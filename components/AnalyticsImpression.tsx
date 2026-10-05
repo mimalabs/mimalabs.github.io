@@ -24,5 +24,5 @@ export function AnalyticsImpression({ children, eventName, props }: { children: 
     return () => observer.disconnect();
   }, [eventName, props]);
 
-  return <div ref={ref} className="h-full">{children}</div>;
+  return <div ref={ref} className="h-full w-full">{children}</div>;
 }
