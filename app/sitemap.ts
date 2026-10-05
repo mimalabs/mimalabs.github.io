@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { locales } from "@/i18n/config";
 import { siteConfig } from "@/config/site";
 
+export const dynamic = "force-static";
+
 const infoPages = ["about", "faq", "privacy", "cookies", "legal", "terms", "accessibility"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
