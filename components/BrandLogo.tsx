@@ -9,8 +9,8 @@ export function BrandLogo({ compact = false }: { compact?: boolean }) {
           <Image
             src={withBasePath("/brand/mima-labs-mark.png")}
             alt=""
-            width={72}
-            height={72}
+            width={60}
+            height={60}
             priority
             className="header-mark-image"
           />

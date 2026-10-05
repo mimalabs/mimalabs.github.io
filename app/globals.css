@@ -553,10 +553,10 @@ summary:focus-visible {
   flex: 0 0 3rem;
   place-items: center;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.82);
+  /*border: 1px solid rgba(255,255,255,.82);*/
   border-radius: 999px;
-  background: rgba(255,255,255,.92);
-  box-shadow: 0 6px 18px rgba(56,37,27,.07), inset 0 1px 0 rgba(255,255,255,.95);
+  /*background: rgba(255,255,255,.92);
+  box-shadow: 0 6px 18px rgba(56,37,27,.07), inset 0 1px 0 rgba(255,255,255,.95);*/
   transition: box-shadow .22s ease, transform .22s cubic-bezier(.2,.8,.2,1);
 }
 .header-brand-mark:hover .header-mark-frame {
