@@ -1,0 +1,87 @@
+name: Deploy MIMA LABS to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Resolve public URL and base path
+        id: urls
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo="${GITHUB_REPOSITORY#*/}"
+          owner="${GITHUB_REPOSITORY_OWNER}"
+          custom_site_url="${{ vars.NEXT_PUBLIC_SITE_URL }}"
+          custom_base_path="${{ vars.NEXT_PUBLIC_BASE_PATH }}"
+
+          if [[ -n "$custom_site_url" ]]; then
+            site_url="${custom_site_url%/}"
+            base_path="$custom_base_path"
+          elif [[ "$repo" == "$owner.github.io" ]]; then
+            site_url="https://${owner}.github.io"
+            base_path=""
+          else
+            site_url="https://${owner}.github.io/${repo}"
+            base_path="/${repo}"
+          fi
+
+          echo "site_url=$site_url" >> "$GITHUB_OUTPUT"
+          echo "base_path=$base_path" >> "$GITHUB_OUTPUT"
+          echo "Building for $site_url (base path: ${base_path:-/})"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build static site
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ steps.urls.outputs.site_url }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.urls.outputs.base_path }}
+          NEXT_PUBLIC_TESTIMONIALS_ENABLED: "false"
+          NEXT_PUBLIC_COOKIE_CONSENT_REQUIRED: "true"
+          NEXT_PUBLIC_PLAUSIBLE_SCRIPT_SRC: ${{ vars.NEXT_PUBLIC_PLAUSIBLE_SCRIPT_SRC }}
+          NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
+
+      - name: Ensure GitHub Pages bypasses Jekyll
+        run: touch out/.nojekyll
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

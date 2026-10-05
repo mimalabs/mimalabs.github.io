@@ -1,0 +1,293 @@
+{
+  "meta": {
+    "title": "MIMA LABS — Des livres créatifs pour les petites imaginations",
+    "description": "Des livres créatifs pour colorier, imaginer et créer."
+  },
+  "nav": {
+    "products": "Livres",
+    "reviews": "Avis",
+    "about": "À propos",
+    "faq": "FAQ",
+    "language": "Langue",
+    "contact": "Contact"
+  },
+  "common": {
+    "explore": "Découvrir les livres",
+    "viewAll": "Voir tous les livres",
+    "viewAmazon": "Voir sur Amazon",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "comingSoon": "Bientôt",
+    "age": "Âge",
+    "rating": "Note",
+    "backHome": "Retour à MIMA LABS",
+    "externalLink": "Ouvre un site externe",
+    "comingSoonEdition": "Cette édition linguistique arrive bientôt.",
+    "backToTop": "Retour en haut"
+  },
+  "hero": {
+    "slide1": {
+      "eyebrow": "Petites mains. Grande imagination.",
+      "title": "Colorie. Imagine. Crée.",
+      "body": "Des livres créatifs pour petites mains et grandes idées.",
+      "cta": "Découvrir les livres"
+    },
+    "slide2": {
+      "eyebrow": "Une bibliothèque qui grandit",
+      "title": "Plus de thèmes. Plus de créativité.",
+      "body": "Ferme, Halloween et Noël ne sont que le début.",
+      "cta": "Voir tous les livres"
+    }
+  },
+  "products": {
+    "eyebrow": "Nos livres",
+    "title": "Choisir un univers à explorer",
+    "intro": "Des collections qui grandissent avec de nouveaux thèmes, âges et activités.",
+    "growingLabel": "Bibliothèque en croissance",
+    "roadmapTitle": "La suite arrive",
+    "roadmapBody": "Nouvelles saisons, nouveaux âges et nouvelles façons de colorier, dessiner et imaginer.",
+    "roadmapTags": [
+      "Nouvelles saisons",
+      "Nouveaux âges",
+      "Colorier + dessiner",
+      "Imaginer + créer"
+    ]
+  },
+  "productFamilies": {
+    "farm": {
+      "theme": "Ferme",
+      "title": "Mon premier livre de coloriage de la ferme",
+      "description": "Des scènes de ferme simples pour les premiers coloriages.",
+      "benefits": [
+        "Formes faciles",
+        "Univers de ferme doux",
+        "Pour petites mains"
+      ]
+    },
+    "halloween": {
+      "theme": "Halloween",
+      "title": "Mon premier livre de coloriage Halloween",
+      "description": "Un Halloween doux et ludique pour les petits artistes.",
+      "benefits": [
+        "Halloween tout doux",
+        "Formes simples",
+        "Pour petites mains"
+      ]
+    },
+    "christmas": {
+      "theme": "Noël",
+      "title": "Mon premier livre de coloriage de Noël",
+      "description": "Un univers de Noël joyeux pour les petits artistes.",
+      "benefits": [
+        "Scènes de Noël joyeuses",
+        "Formes simples et claires",
+        "Pensé pour les petites mains"
+      ]
+    }
+  },
+  "activities": {
+    "color": "Colorier",
+    "imagine": "Imaginer",
+    "draw": "Dessiner"
+  },
+  "testimonials": {
+    "eyebrow": "Avis",
+    "title": "Ce qu’en disent les familles",
+    "intro": "De vraies histoires de familles viendront ici.",
+    "demoLabel": "DÉMO — à remplacer avant publication",
+    "videoPlaceholder": "Vidéo client",
+    "ratingSuffix": "sur 10",
+    "quotes": {
+      "demo1": "Des pages simples avec de la place pour choisir et explorer.",
+      "demo2": "Un thème cohérent d’une page à l’autre.",
+      "demo3": "Une activité calme à partager et personnaliser."
+    }
+  },
+  "footer": {
+    "pitch": "La créativité commence petit.",
+    "parentNote": "Pensé pour les familles. Les achats se font sur Amazon.",
+    "links": {
+      "about": "À propos",
+      "faq": "FAQ",
+      "privacy": "Confidentialité",
+      "cookies": "Cookies",
+      "legal": "Mentions légales",
+      "terms": "Conditions d’utilisation",
+      "accessibility": "Accessibilité"
+    },
+    "rights": "Tous droits réservés.",
+    "exploreLabel": "Découvrir",
+    "legalLabel": "Mentions & confidentialité"
+  },
+  "infoPages": {
+    "about": {
+      "title": "À propos de MIMA LABS",
+      "intro": "Des livres créatifs pour aider les petits à colorier, imaginer et créer.",
+      "sections": [
+        {
+          "heading": "Pourquoi MIMA LABS",
+          "body": "Un livre d’activités peut aller plus loin que le coloriage. Nos collections relient thèmes, saisons et fêtes et peuvent évoluer avec de nouveaux âges et activités."
+        },
+        {
+          "heading": "Une créativité revue par des humains",
+          "body": "Nous utilisons des outils créatifs, dont l’IA générative, pour explorer des idées. Chaque activité publiée est revue, sélectionnée et affinée par une personne."
+        },
+        {
+          "heading": "La suite",
+          "body": "Le coloriage n’est qu’un début. Les futurs livres pourront ajouter du dessin, des détails à compléter et de petites invitations à imaginer."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "intro": "Des réponses rapides sur les livres, l’achat et notre façon de créer.",
+      "sections": [
+        {
+          "heading": "Où acheter les livres ?",
+          "body": "Choisissez un livre ici et nous vous envoyons vers le bon Amazon. Paiement, livraison et retours sont gérés sur Amazon."
+        },
+        {
+          "heading": "Pour quels âges ?",
+          "body": "Les premières collections sont destinées aux 1–3 ans. D’autres âges suivront et seront clairement indiqués sur chaque produit."
+        },
+        {
+          "heading": "Les livres sont-ils créés avec l’IA ?",
+          "body": "L’IA générative est l’un de nos outils créatifs. Une personne vérifie et affine chaque activité avant publication."
+        },
+        {
+          "heading": "Collectez-vous des données sur les enfants ?",
+          "body": "Non. Le site s’adresse aux parents et proches et ne propose ni compte, ni commentaire, ni formulaire pour enfants. Les analyses restent agrégées."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "intro": "Dernière mise à jour : 16 septembre 2026. Cette politique explique comment MIMA LABS traite les données lors de l’utilisation du site.",
+      "sections": [
+        {
+          "heading": "Responsable",
+          "body": "MIMA LABS, Suurstoffi 13b, Rotkreuz, Zug, Suisse. Contact : info.mimalabs@gmail.com."
+        },
+        {
+          "heading": "Données collectées",
+          "body": "Le site ne comporte ni compte, ni newsletter, ni formulaire de contact. Nous utilisons des statistiques respectueuses de la vie privée pour comprendre de manière agrégée les pages vues, l’intérêt pour les produits, la langue, la catégorie d’appareil, la provenance et les clics vers Amazon. Nous n’utilisons pas ces données pour la publicité comportementale ni le profilage entre sites."
+        },
+        {
+          "heading": "Mesure d’audience",
+          "body": "Ce site est préparé pour Plausible Analytics, un service de statistiques sans cookies. Lorsqu’il est activé, il sert uniquement à la mesure interne et à l’amélioration. L’intégration vise à éviter les identifiants persistants, les profils publicitaires et le suivi intersites. La configuration de production et les conditions du fournisseur doivent être vérifiées avant lancement."
+        },
+        {
+          "heading": "Enfants",
+          "body": "Les livres sont destinés aux enfants, mais ce site commercial s’adresse aux parents et aux personnes qui s’en occupent. Nous ne demandons pas sciemment aux enfants leur nom, e-mail, photo, position précise ou autres informations personnelles directes. La mesure d’audience est limitée à l’analyse interne du site."
+        },
+        {
+          "heading": "Liens externes",
+          "body": "Lorsque vous ouvrez un produit sur Amazon, vous quittez MIMA LABS. Amazon traite alors les informations selon ses propres politiques de confidentialité et de cookies. MIMA LABS ne contrôle pas ce traitement."
+        },
+        {
+          "heading": "Vos droits",
+          "body": "Selon votre lieu de résidence, la loi applicable peut vous accorder des droits d’information, d’accès, de rectification, d’effacement, de limitation, d’opposition ou de réclamation auprès d’une autorité de contrôle. Contactez-nous à l’adresse ci-dessus pour exercer une demande."
+        },
+        {
+          "heading": "Modifications",
+          "body": "Nous pouvons mettre cette politique à jour si le site, l’outil de mesure ou les exigences légales changent. La date en haut de page sera alors mise à jour."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Politique relative aux cookies",
+      "intro": "MIMA LABS conserve une petite préférence pour mémoriser votre choix de confidentialité. Les analyses optionnelles ne se chargent qu’après acceptation.",
+      "sections": [
+        {
+          "heading": "Notre site",
+          "body": "Les fonctions nécessaires du site fonctionnent sans analyses optionnelles. Nous mémorisons votre choix localement afin de ne pas vous le redemander à chaque visite. Si vous refusez, les analyses optionnelles restent désactivées."
+        },
+        {
+          "heading": "Si cela change",
+          "body": "Si nous ajoutons plus tard une technologie qui stocke ou lit des informations non essentielles sur votre appareil — par exemple certains lecteurs vidéo intégrés, outils publicitaires ou statistiques avec cookies — nous mettrons cette politique à jour et ajouterons les contrôles de consentement requis avant activation."
+        },
+        {
+          "heading": "Amazon",
+          "body": "Un clic vers Amazon vous conduit à un site externe. Amazon peut utiliser des cookies ou technologies similaires conformément à ses propres politiques. MIMA LABS ne dépose pas ces technologies avant votre départ de ce site."
+        }
+      ]
+    },
+    "legal": {
+      "title": "Mentions légales",
+      "intro": "Informations sur l’exploitant et éléments importants concernant ce site.",
+      "sections": [
+        {
+          "heading": "Exploitant du site",
+          "body": "MIMA LABS · Suurstoffi 13b, Rotkreuz, Zug, Suisse · info.mimalabs@gmail.com."
+        },
+        {
+          "heading": "Fonctionnement des achats",
+          "body": "MIMA LABS ne conclut actuellement aucun contrat de vente et ne traite aucun paiement sur ce site. Les boutons produit sont des liens externes vers Amazon. Disponibilité, prix final, taxes, livraison, paiement, retours et contrat de vente sont gérés sur la place de marché Amazon visitée et/ou par le vendeur qui y est indiqué."
+        },
+        {
+          "heading": "Outils créatifs et transparence IA",
+          "body": "MIMA LABS peut utiliser l’IA générative avec d’autres outils créatifs numériques pendant l’idéation et la production. La vérification humaine reste partie intégrante du processus : les concepts et éléments générés sont contrôlés, sélectionnés et affinés avant publication."
+        },
+        {
+          "heading": "Propriété intellectuelle",
+          "body": "Sauf indication contraire, la marque MIMA LABS, les textes du site, les mises en page originales et le contenu publié des livres sont protégés par les lois applicables en matière de propriété intellectuelle. Les noms et marques de tiers appartiennent à leurs propriétaires. Amazon est une place de marché tierce et n’est pas l’exploitant de MIMA LABS."
+        },
+        {
+          "heading": "Informations externes",
+          "body": "Nous cherchons à maintenir les informations produit à jour, mais la fiche Amazon reste la source de référence pour les informations d’achat au moment de la transaction. Les sites externes sont exploités indépendamment de MIMA LABS."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Conditions d’utilisation",
+      "intro": "Ces conditions encadrent l’utilisation du site MIMA LABS. Elles ne remplacent pas les conditions applicables à un achat sur Amazon.",
+      "sections": [
+        {
+          "heading": "Utilisation du site",
+          "body": "Vous pouvez consulter ce site à des fins personnelles et licites. N’en faites pas un usage abusif, ne perturbez pas son fonctionnement, ne tentez pas d’accès non autorisé et ne réutilisez pas du contenu protégé d’une façon portant atteinte aux droits applicables."
+        },
+        {
+          "heading": "Liens produit",
+          "body": "Les boutons produit ouvrent une place de marché Amazon externe. Un clic ne crée pas de contrat de vente avec MIMA LABS via ce site. Tout achat est soumis à la fiche, au vendeur et aux conditions de la place de marché affichées sur Amazon."
+        },
+        {
+          "heading": "Informations et disponibilité",
+          "body": "Nous pouvons modifier, ajouter ou retirer des collections, langues, fonctions et liens à tout moment. Un contenu provisoire ou annoncé comme « bientôt » ne garantit aucune date de sortie."
+        },
+        {
+          "heading": "Responsabilité",
+          "body": "Aucune disposition n’exclut une responsabilité qui ne peut légalement l’être. Dans la mesure permise par la loi, MIMA LABS n’est pas responsable du fonctionnement, de la disponibilité ou des politiques de sites tiers indépendants accessibles par des liens externes."
+        }
+      ]
+    },
+    "accessibility": {
+      "title": "Accessibilité",
+      "intro": "Nous voulons que les parents et les personnes qui s’occupent d’enfants puissent utiliser MIMA LABS confortablement sur différents appareils et avec différents modes d’entrée.",
+      "sections": [
+        {
+          "heading": "Nos choix",
+          "body": "Le site utilise des titres et régions sémantiques, des commandes accessibles au clavier, des états de focus visibles, une mise en page responsive, des contrastes lisibles et la prise en charge de la réduction des animations. Les carrousels ne défilent pas automatiquement."
+        },
+        {
+          "heading": "Besoin d’aide ?",
+          "body": "Si quelque chose vous empêche d’accéder aux informations produit, écrivez à info.mimalabs@gmail.com en précisant ce que vous cherchiez à faire et l’appareil ou la technologie d’assistance utilisée."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Une idée pour les petits créateurs ?",
+    "body": "Questions, avis ou partenariats ? Écrivez-nous.",
+    "cta": "Écrire à MIMA LABS",
+    "note": "Pas de formulaire — simplement un e-mail."
+  },
+  "cookieConsent": {
+    "title": "Votre vie privée, simplement",
+    "body": "Nous mémorisons votre choix. Les analyses optionnelles ne se chargent qu’après acceptation.",
+    "acceptAll": "Accepter",
+    "essentialOnly": "Refuser",
+    "learnMore": "Politique cookies",
+    "manage": "Préférences cookies"
+  }
+}

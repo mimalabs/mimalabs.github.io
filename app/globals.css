@@ -1,0 +1,4319 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-bricolage);
+  --color-brand-terracotta: #d7735d;
+  --color-brand-sun: #f2c764;
+  --color-brand-leaf: #88aa79;
+  --color-brand-cream: #fff3e5;
+  --color-brand-paper: #fbf7f0;
+  --color-brand-brown: #38251b;
+  --color-brand-ink: #241914;
+  --color-brand-muted: #746963;
+  --color-brand-line: #ece3da;
+}
+
+:root {
+  color-scheme: light;
+  --header-height: 5rem;
+  --section-pad-y: clamp(1.25rem, 3.2vh, 3rem);
+  --shell-gutter: clamp(1rem, 3.25vw, 4rem);
+  --radius-surface: clamp(1.6rem, 2.5vw, 2.6rem);
+  --shadow-surface: 0 24px 80px rgba(56, 37, 27, .09), 0 2px 12px rgba(56, 37, 27, .04);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-brand-paper);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 8% 3%, color-mix(in srgb, var(--color-brand-sun) 16%, transparent), transparent 30rem),
+    radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--color-brand-leaf) 12%, transparent), transparent 32rem),
+    var(--color-brand-paper);
+  color: var(--color-brand-ink);
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button, select, input, textarea { font: inherit; }
+summary { list-style: none; }
+
+::selection {
+  background: color-mix(in srgb, var(--color-brand-sun) 62%, white);
+  color: var(--color-brand-ink);
+}
+
+.skip-link {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: 100;
+  transform: translateY(-150%);
+  padding: .75rem 1rem;
+  background: var(--color-brand-brown);
+  color: white;
+  border-radius: 0 0 1rem 0;
+}
+.skip-link:focus { transform: translateY(0); }
+
+.focus-ring:focus-visible,
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-brand-terracotta) 88%, white);
+  outline-offset: 3px;
+}
+
+.section-shell {
+  width: calc(100% - (var(--shell-gutter) * 2));
+  max-width: 1760px;
+  margin-inline: auto;
+}
+
+.viewport-section {
+  min-height: calc(100svh - var(--header-height));
+  padding-block: var(--section-pad-y);
+  display: flex;
+  align-items: center;
+}
+
+.footer-viewport {
+  min-height: calc(100svh - var(--header-height));
+  padding-block: var(--section-pad-y);
+  display: flex;
+  align-items: center;
+}
+
+.glass-surface {
+  border: 1px solid rgba(255,255,255,.76);
+  background: rgba(255,255,255,.72);
+  box-shadow: var(--shadow-surface);
+  backdrop-filter: blur(24px) saturate(135%);
+  -webkit-backdrop-filter: blur(24px) saturate(135%);
+}
+
+.surface {
+  border: 1px solid color-mix(in srgb, var(--color-brand-line) 78%, white);
+  background: rgba(255,255,255,.9);
+  box-shadow: var(--shadow-surface);
+}
+
+.nav-surface {
+  border: 1px solid rgba(255,255,255,.8);
+  background: rgba(255,253,249,.78);
+  box-shadow: 0 8px 30px rgba(56,37,27,.07);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+}
+
+.hero-card {
+  min-height: min(760px, calc(100svh - var(--header-height) - (var(--section-pad-y) * 2)));
+  border-radius: var(--radius-surface);
+}
+
+.hero-layout {
+  display: grid;
+  min-height: inherit;
+  grid-template-columns: 1fr;
+}
+
+.hero-copy { padding: clamp(1.55rem, 7vw, 3rem); }
+.hero-art { min-height: 320px; padding: clamp(1.25rem, 6vw, 2.5rem); }
+
+.responsive-track {
+  --track-gap: clamp(.9rem, 1.4vw, 1.35rem);
+  display: flex;
+  gap: var(--track-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0;
+  overscroll-behavior-inline: contain;
+}
+
+.responsive-slide {
+  flex: 0 0 88%;
+  min-width: 0;
+}
+
+.testimonial-slide {
+  flex: 0 0 92%;
+  min-width: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  color: var(--color-brand-brown);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: .52rem;
+  height: .52rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-brand-terracotta), var(--color-brand-sun));
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-brand-sun) 18%, transparent);
+}
+
+.btn-primary,
+.btn-secondary,
+.icon-button {
+  transition: transform .22s ease, background-color .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+
+.btn-primary {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  border-radius: 999px;
+  background: var(--color-brand-brown);
+  padding: .78rem 1.25rem;
+  color: white;
+  font-size: .9rem;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(56,37,27,.12);
+}
+.btn-primary:hover { transform: translateY(-1px); background: var(--color-brand-ink); }
+
+.btn-secondary {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border: 1px solid color-mix(in srgb, var(--color-brand-line) 82%, white);
+  border-radius: 999px;
+  background: rgba(255,255,255,.76);
+  padding: .68rem 1rem;
+  color: var(--color-brand-brown);
+  font-size: .86rem;
+  font-weight: 800;
+  backdrop-filter: blur(14px);
+}
+.btn-secondary:hover { transform: translateY(-1px); background: white; }
+
+.icon-button {
+  display: inline-flex;
+  height: 2.9rem;
+  width: 2.9rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--color-brand-line) 82%, white);
+  border-radius: 999px;
+  background: rgba(255,255,255,.8);
+  color: var(--color-brand-brown);
+  box-shadow: 0 8px 20px rgba(56,37,27,.05);
+}
+.icon-button:hover { transform: translateY(-1px); background: white; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.85rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-brand-leaf) 15%, white);
+  padding: .38rem .7rem;
+  color: var(--color-brand-brown);
+  font-size: .72rem;
+  font-weight: 800;
+}
+
+.pretty-balance { text-wrap: balance; }
+.pretty-wrap { text-wrap: pretty; }
+.hide-scrollbar { scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (min-width: 720px) and (max-width: 1199px) {
+  :root {
+    --section-pad-y: clamp(1.5rem, 3vh, 2.6rem);
+    --shell-gutter: clamp(1.5rem, 4vw, 3rem);
+  }
+  .hero-layout { grid-template-columns: 1.02fr .98fr; }
+  .hero-copy { padding: clamp(2rem, 4vw, 3.35rem); }
+  .hero-art { min-height: 100%; padding: clamp(1.5rem, 3vw, 2.5rem); }
+  .responsive-slide { flex-basis: calc((100% - var(--track-gap)) / 2); }
+  .testimonial-slide { flex-basis: calc((100% - var(--track-gap)) / 2); }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --section-pad-y: clamp(1.75rem, 3.4vh, 3.2rem);
+    --shell-gutter: clamp(2.5rem, 4vw, 5.5rem);
+  }
+  .hero-layout { grid-template-columns: 1.04fr .96fr; }
+  .hero-copy { padding: clamp(3rem, 5vw, 5rem); }
+  .hero-art { min-height: 100%; padding: clamp(2.5rem, 4vw, 4.5rem); }
+  .responsive-slide { flex-basis: calc((100% - (var(--track-gap) * 2)) / 3); }
+  .testimonial-slide { flex-basis: calc((100% - (var(--track-gap) * 2)) / 3); }
+}
+
+@media (max-width: 719px) and (orientation: portrait) {
+  :root {
+    --header-height: 4.75rem;
+    --section-pad-y: .85rem;
+    --shell-gutter: .9rem;
+  }
+  .hero-card { min-height: calc(100svh - var(--header-height) - 1.7rem); }
+  .hero-layout { grid-template-rows: auto minmax(285px, 1fr); }
+  .hero-copy { padding: 1.55rem 1.3rem 1.05rem; }
+  .hero-art { min-height: 285px; padding: 1.1rem; }
+  .responsive-slide { flex-basis: 90%; }
+  .testimonial-slide { flex-basis: 94%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Language control -------------------------------------------------------- */
+.language-trigger {
+  display: inline-flex;
+  width: 2.82rem;
+  height: 2.82rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--color-brand-line) 78%, white);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.74));
+  padding: .38rem;
+  color: var(--color-brand-brown);
+  box-shadow: 0 6px 18px rgba(56,37,27,.055), inset 0 1px 0 rgba(255,255,255,.94);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  cursor: pointer;
+  transition: transform .24s cubic-bezier(.2,.8,.2,1), box-shadow .24s ease, border-color .24s ease, background .24s ease;
+}
+
+.language-trigger:hover {
+  transform: translateY(-1px) scale(1.035);
+  border-color: color-mix(in srgb, var(--color-brand-terracotta) 22%, var(--color-brand-line));
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 10px 28px rgba(56,37,27,.095), inset 0 1px 0 white;
+}
+
+.language-trigger[data-state="open"] {
+  transform: scale(.97);
+  border-color: color-mix(in srgb, var(--color-brand-terracotta) 30%, var(--color-brand-line));
+  background: white;
+  box-shadow: 0 12px 30px rgba(56,37,27,.11), 0 0 0 4px color-mix(in srgb, var(--color-brand-sun) 12%, transparent);
+}
+
+.language-flag {
+  position: relative;
+  display: inline-flex;
+  width: 1.86rem;
+  height: 1.86rem;
+  flex: 0 0 1.86rem;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: 0 2px 8px rgba(56,37,27,.11);
+}
+
+.language-flag svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.language-menu {
+  z-index: 80;
+  min-width: 13.2rem;
+  overflow: hidden;
+  border: 1px solid rgba(236,227,218,.82);
+  border-radius: 1.35rem;
+  background: rgba(255,255,255,.97);
+  padding: .45rem;
+  box-shadow: 0 24px 70px rgba(56,37,27,.14), 0 3px 12px rgba(56,37,27,.05);
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
+  animation: language-menu-in .24s cubic-bezier(.16,1,.3,1);
+}
+
+.language-menu[data-state="closed"] { animation: language-menu-out .14s ease-in forwards; }
+
+.language-list {
+  display: flex;
+  flex-direction: column;
+  gap: .16rem;
+}
+
+.language-option {
+  display: grid;
+  width: 100%;
+  min-height: 3rem;
+  grid-template-columns: 2rem 1fr 1rem;
+  align-items: center;
+  gap: .72rem;
+  border-radius: 1rem;
+  padding: .42rem .6rem;
+  outline: none;
+  color: var(--color-brand-muted);
+  transition: transform .18s cubic-bezier(.2,.8,.2,1), background .18s ease, color .18s ease;
+}
+
+.language-option .language-flag {
+  width: 1.88rem;
+  height: 1.88rem;
+  flex-basis: 1.88rem;
+  transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .18s ease;
+}
+
+.language-option-label {
+  font-size: .88rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+
+.language-option-state {
+  text-align: center;
+  color: var(--color-brand-terracotta);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.language-option:hover,
+.language-option[data-highlighted] {
+  transform: translateX(2px);
+  background: color-mix(in srgb, var(--color-brand-cream) 84%, white);
+  color: var(--color-brand-brown);
+}
+
+.language-option:hover .language-flag,
+.language-option[data-highlighted] .language-flag {
+  transform: scale(1.05);
+  box-shadow: 0 5px 14px rgba(56,37,27,.13);
+}
+
+.language-option.is-active {
+  background: color-mix(in srgb, var(--color-brand-sun) 14%, white);
+  color: var(--color-brand-brown);
+}
+
+@keyframes language-menu-in {
+  from { opacity: 0; transform: translateY(-7px) scale(.96); filter: blur(2px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes language-menu-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-4px) scale(.98); }
+}
+
+/* Adaptive carousel scrollbars ------------------------------------------- */
+.adaptive-scrollbar {
+  padding-bottom: .8rem;
+  scrollbar-width: none;
+}
+
+.adaptive-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (min-width: 720px) {
+  .adaptive-scrollbar {
+    overflow-x: auto;
+    padding-bottom: 1.05rem;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--color-brand-brown) 28%, transparent) color-mix(in srgb, var(--color-brand-line) 48%, transparent);
+  }
+
+  .adaptive-scrollbar::-webkit-scrollbar {
+    display: block;
+    height: .48rem;
+  }
+
+  .adaptive-scrollbar::-webkit-scrollbar-track {
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-brand-line) 45%, transparent);
+  }
+
+  .adaptive-scrollbar::-webkit-scrollbar-thumb {
+    min-width: 5rem;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-brand-brown) 30%, transparent);
+    background-clip: padding-box;
+  }
+
+  .adaptive-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--color-brand-terracotta) 58%, var(--color-brand-brown));
+    background-clip: padding-box;
+  }
+}
+
+/* Reviews --------------------------------------------------------------- */
+.testimonial-card-grid {
+  display: grid;
+  height: 100%;
+  grid-template-rows: minmax(220px, .9fr) auto;
+}
+
+.testimonial-video {
+  display: flex;
+  min-height: 220px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-brand-cream), white, color-mix(in srgb, var(--color-brand-leaf) 10%, white));
+  padding: 1.25rem;
+}
+
+.testimonial-video video { border-radius: 1.35rem; }
+
+.testimonial-copy {
+  display: flex;
+  min-height: 210px;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.35rem, 2.2vw, 2rem);
+}
+
+/* Growing-library geometry --------------------------------------------- */
+.future-shapes {
+  display: grid;
+  width: min(100%, 15rem);
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: clamp(.65rem, 1.2vw, 1rem);
+  margin-top: 2rem;
+}
+
+.future-shape {
+  display: block;
+  aspect-ratio: 1;
+  filter: drop-shadow(0 14px 24px rgba(0,0,0,.12));
+}
+
+.future-shape-circle {
+  border-radius: 999px;
+  background: var(--color-brand-sun);
+}
+
+.future-shape-square {
+  border-radius: 1rem;
+  background: var(--color-brand-leaf);
+  transform: rotate(8deg) scale(.9);
+}
+
+.future-shape-triangle {
+  background: var(--color-brand-terracotta);
+  clip-path: polygon(50% 4%, 96% 92%, 4% 92%);
+  transform: rotate(-5deg) scale(.94);
+}
+
+@media (max-width: 719px) {
+  .language-trigger { width: 2.62rem; height: 2.62rem; padding: .34rem; }
+  .language-trigger > .language-flag { width: 1.78rem; height: 1.78rem; flex-basis: 1.78rem; }
+  .language-menu { min-width: 12.5rem; max-width: calc(100vw - 1.8rem); }
+}
+
+/* V7 brand navigation refinements ---------------------------------------- */
+.header-brand-mark {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  border-radius: 999px;
+  transition: transform .22s cubic-bezier(.2,.8,.2,1);
+}
+.header-brand-mark:hover {
+  transform: translateY(-1px);
+}
+.header-brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: .72rem;
+  min-width: 0;
+}
+.header-mark-frame {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 3rem;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.82);
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 6px 18px rgba(56,37,27,.07), inset 0 1px 0 rgba(255,255,255,.95);
+  transition: box-shadow .22s ease, transform .22s cubic-bezier(.2,.8,.2,1);
+}
+.header-brand-mark:hover .header-mark-frame {
+  transform: scale(1.02);
+  box-shadow: 0 10px 24px rgba(56,37,27,.1), inset 0 1px 0 white;
+}
+.header-mark-image {
+  width: 91% !important;
+  height: 91% !important;
+  max-width: none !important;
+  object-fit: contain;
+  object-position: center;
+}
+.header-brand-name {
+  color: var(--color-brand-brown);
+  font-family: var(--font-display), "Bricolage Grotesque", sans-serif;
+  font-size: clamp(.9rem, 1.05vw, 1rem);
+  font-weight: 700;
+  letter-spacing: .105em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.footer-brand-logo {
+  width: clamp(6.4rem, 8vw, 8.2rem) !important;
+}
+
+/* Slightly quieter language flags. */
+.language-trigger { width: 2.68rem; height: 2.68rem; padding: .4rem; }
+.language-trigger > .language-flag { width: 1.58rem; height: 1.58rem; flex-basis: 1.58rem; }
+.language-option { grid-template-columns: 1.78rem 1fr 1rem; }
+.language-option .language-flag { width: 1.62rem; height: 1.62rem; flex-basis: 1.62rem; }
+
+@media (max-width: 719px) {
+  .header-mark-frame { width: 2.72rem; height: 2.72rem; flex-basis: 2.72rem; }
+  .header-brand-lockup { gap: .58rem; }
+  .header-brand-name { font-size: .83rem; letter-spacing: .09em; }
+  .language-trigger { width: 2.5rem; height: 2.5rem; }
+  .language-trigger > .language-flag { width: 1.48rem; height: 1.48rem; flex-basis: 1.48rem; }
+  .footer-brand-logo { width: 6.4rem !important; }
+}
+
+/* V10 product availability ------------------------------------------------ */
+.coming-soon-state {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: .7rem;
+  border: 1px solid color-mix(in srgb, var(--color-brand-sun) 42%, var(--color-brand-line));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-brand-sun) 11%, white);
+  padding: .72rem .85rem;
+  color: var(--color-brand-brown);
+}
+
+.coming-soon-state > span:last-child {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: .08rem;
+}
+
+.coming-soon-state strong {
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+.coming-soon-state small {
+  color: var(--color-brand-muted);
+  font-size: .72rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.coming-soon-dot {
+  width: .62rem;
+  height: .62rem;
+  flex: 0 0 .62rem;
+  border-radius: 999px;
+  background: var(--color-brand-sun);
+  box-shadow: 0 0 0 .32rem color-mix(in srgb, var(--color-brand-sun) 18%, transparent);
+}
+
+/* The roadmap card intentionally mirrors the exact product-card anatomy. */
+.roadmap-visual .future-shapes {
+  width: min(76%, 14rem);
+  margin: 0 auto;
+}
+
+/* V10 footer -------------------------------------------------------------- */
+.footer-frame {
+  width: min(100%, 1560px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: clamp(2rem, 3.4vw, 3.8rem);
+  background:
+    radial-gradient(circle at 90% 4%, rgba(242,199,100,.12), transparent 28rem),
+    rgba(255,255,255,.035);
+  box-shadow: 0 36px 90px rgba(15,8,5,.22);
+}
+
+.footer-brand-panel {
+  position: relative;
+  min-height: clamp(25rem, 54vh, 40rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 22% 14%, rgba(242,199,100,.25), transparent 16rem),
+    linear-gradient(145deg, #fffdf9, #fff8ee 62%, #f7ecdf);
+  color: var(--color-brand-brown);
+  padding: clamp(1.4rem, 3.6vw, 4rem);
+}
+
+.footer-logo-stage {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  min-height: 13rem;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,.88);
+  border-radius: clamp(1.8rem, 3vw, 3rem);
+  background: rgba(255,255,255,.58);
+  padding: clamp(1.1rem, 2vw, 2rem);
+  box-shadow: 0 24px 70px rgba(56,37,27,.09);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.footer-brand-panel .footer-brand-logo {
+  width: clamp(10rem, 15vw, 14.5rem) !important;
+}
+
+.footer-brand-panel .footer-logo-stage > span {
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.footer-brand-panel .footer-logo-stage > span > span:last-child > span:first-child {
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+}
+
+.footer-geometry {
+  position: absolute;
+  right: clamp(1rem, 4vw, 4rem);
+  bottom: clamp(1rem, 4vw, 4rem);
+  display: grid;
+  width: min(46%, 14rem);
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: clamp(.65rem, 1.3vw, 1rem);
+  opacity: .88;
+}
+
+.footer-geometry span { display: block; aspect-ratio: 1; }
+.footer-geometry-circle { border-radius: 999px; background: var(--color-brand-sun); }
+.footer-geometry-square { border-radius: 1.15rem; background: var(--color-brand-leaf); transform: rotate(8deg) scale(.9); }
+.footer-geometry-triangle { background: var(--color-brand-terracotta); clip-path: polygon(50% 4%, 96% 92%, 4% 92%); transform: rotate(-5deg) scale(.94); }
+
+.footer-content-panel {
+  display: grid;
+  min-width: 0;
+  align-content: space-between;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding: clamp(2rem, 5vw, 5.5rem);
+}
+
+.footer-kicker,
+.footer-link-heading {
+  color: rgba(255,255,255,.42);
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.footer-message h2 { margin-top: .85rem; max-width: 8.5ch; }
+
+.footer-contact-pill {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  gap: .65rem;
+  margin-top: 1.4rem;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  padding: .78rem 1.05rem;
+  color: white;
+  font-size: .84rem;
+  font-weight: 900;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.footer-contact-pill:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.12);
+}
+
+.footer-link-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.footer-link-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .65rem 1.25rem;
+  margin-top: .9rem;
+}
+
+.footer-link-grid > div:first-child .footer-link-list { grid-template-columns: 1fr; }
+
+.footer-link-list a {
+  width: fit-content;
+  color: rgba(255,255,255,.67);
+  font-size: .9rem;
+  font-weight: 750;
+  transition: color .18s ease, transform .18s ease;
+}
+
+.footer-link-list a:hover { color: white; transform: translateX(2px); }
+
+.footer-meta {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid rgba(255,255,255,.09);
+  padding: 1.05rem clamp(1.4rem, 3vw, 3rem) 1.2rem;
+  color: rgba(255,255,255,.34);
+  font-size: .7rem;
+  font-weight: 650;
+}
+
+/* Back to top ------------------------------------------------------------- */
+.back-to-top {
+  position: fixed;
+  right: clamp(.8rem, 2vw, 1.4rem);
+  bottom: clamp(.8rem, 2vw, 1.4rem);
+  z-index: 58;
+  display: inline-flex;
+  min-height: 2.8rem;
+  align-items: center;
+  gap: .5rem;
+  border: 1px solid rgba(236,227,218,.85);
+  border-radius: 999px;
+  background: rgba(255,253,249,.9);
+  padding: .62rem .84rem;
+  color: var(--color-brand-brown);
+  font-size: .76rem;
+  font-weight: 900;
+  box-shadow: 0 12px 34px rgba(56,37,27,.12);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(.65rem) scale(.96);
+  transition: opacity .2s ease, transform .22s cubic-bezier(.2,.8,.2,1), background .2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover { transform: translateY(-2px); background: white; }
+.back-to-top > span:first-child { font-size: 1rem; line-height: 1; }
+
+/* Optional cookie consent ------------------------------------------------- */
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: .8rem;
+  z-index: 90;
+  display: flex;
+  width: min(calc(100% - 1.2rem), 47rem);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid rgba(236,227,218,.92);
+  border-radius: 1.35rem;
+  background: rgba(255,253,249,.96);
+  padding: .85rem .9rem .85rem 1rem;
+  color: var(--color-brand-brown);
+  box-shadow: 0 24px 70px rgba(56,37,27,.16);
+  backdrop-filter: blur(22px) saturate(135%);
+  -webkit-backdrop-filter: blur(22px) saturate(135%);
+  transform: translateX(-50%);
+}
+
+.cookie-banner-copy { min-width: 0; }
+.cookie-banner-copy strong { font-size: .82rem; font-weight: 900; }
+.cookie-banner-copy p { margin: .18rem 0 0; color: var(--color-brand-muted); font-size: .72rem; line-height: 1.4; }
+.cookie-banner-copy a { color: var(--color-brand-brown); font-weight: 800; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--color-brand-brown) 25%, transparent); text-underline-offset: 3px; }
+.cookie-banner-actions { display: flex; flex: 0 0 auto; gap: .42rem; }
+.cookie-button-primary,
+.cookie-button-secondary {
+  min-height: 2.35rem;
+  border-radius: 999px;
+  padding: .55rem .8rem;
+  font-size: .7rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+.cookie-button-primary { border: 1px solid var(--color-brand-brown); background: var(--color-brand-brown); color: white; }
+.cookie-button-secondary { border: 1px solid var(--color-brand-line); background: white; color: var(--color-brand-brown); }
+
+@media (max-width: 959px) {
+  .footer-frame { grid-template-columns: 1fr; }
+  .footer-brand-panel { min-height: 23rem; }
+  .footer-content-panel { padding: clamp(1.6rem, 5vw, 3rem); }
+  .footer-message h2 { max-width: 11ch; }
+  .footer-meta { grid-column: auto; }
+}
+
+@media (max-width: 719px) {
+  .footer-viewport { align-items: stretch; }
+  .footer-frame { border-radius: 2rem; }
+  .footer-brand-panel { min-height: 19rem; padding: 1.15rem; }
+  .footer-logo-stage { min-height: 10.5rem; padding: .95rem; }
+  .footer-brand-panel .footer-brand-logo { width: 8.4rem !important; }
+  .footer-brand-panel .footer-logo-stage > span { gap: .85rem; }
+  .footer-geometry { right: 1.2rem; bottom: 1.2rem; width: 8.5rem; }
+  .footer-content-panel { gap: 2.3rem; padding: 1.55rem 1.25rem 1.7rem; }
+  .footer-message h2 { max-width: 9ch; }
+  .footer-link-grid { grid-template-columns: 1fr 1.25fr; gap: 1.1rem; }
+  .footer-link-list { grid-template-columns: 1fr; gap: .58rem; }
+  .footer-link-list a { font-size: .83rem; }
+  .footer-meta { flex-direction: column; align-items: flex-start; padding: 1rem 1.25rem 1.1rem; }
+  .back-to-top { width: 2.8rem; justify-content: center; padding-inline: 0; }
+  .back-to-top-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .cookie-banner { align-items: stretch; flex-direction: column; gap: .75rem; padding: .85rem; }
+  .cookie-banner-actions { width: 100%; }
+  .cookie-banner-actions button { flex: 1; }
+}
+
+
+/* V11 — subtly accented section canvas ----------------------------------- */
+.section-tone {
+  position: relative;
+  isolation: isolate;
+}
+
+.section-tone::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.section-tone-hero::before {
+  background:
+    radial-gradient(circle at 8% 18%, color-mix(in srgb, var(--color-brand-sun) 16%, transparent), transparent 30rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-brand-cream) 58%, white), var(--color-brand-paper));
+}
+
+.section-tone-products::before {
+  background:
+    radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--color-brand-leaf) 13%, transparent), transparent 31rem),
+    linear-gradient(180deg, var(--color-brand-paper), color-mix(in srgb, var(--color-brand-leaf) 5%, var(--color-brand-paper)));
+}
+
+.section-tone-opinions::before {
+  background:
+    radial-gradient(circle at 12% 80%, color-mix(in srgb, var(--color-brand-terracotta) 8%, transparent), transparent 28rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-brand-sun) 6%, var(--color-brand-cream)), color-mix(in srgb, var(--color-brand-cream) 76%, white));
+}
+
+.section-tone-contact::before {
+  background:
+    radial-gradient(circle at 88% 22%, color-mix(in srgb, var(--color-brand-sun) 15%, transparent), transparent 30rem),
+    radial-gradient(circle at 12% 76%, color-mix(in srgb, var(--color-brand-leaf) 10%, transparent), transparent 29rem),
+    var(--color-brand-paper);
+}
+
+/* V11 — social links ------------------------------------------------------ */
+.footer-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .72rem;
+  margin-top: 1.4rem;
+}
+
+.footer-actions-row .footer-contact-pill { margin-top: 0; }
+
+.social-links {
+  display: inline-flex;
+  align-items: center;
+  gap: .48rem;
+}
+
+.social-link {
+  display: inline-flex;
+  width: 2.85rem;
+  height: 2.85rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 999px;
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.78);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+  transition: transform .2s cubic-bezier(.2,.8,.2,1), background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.social-link svg { width: 1.18rem; height: 1.18rem; }
+
+.social-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.24);
+  background: rgba(255,255,255,.12);
+  color: white;
+}
+
+/* V11 — compact, explicit consent ---------------------------------------- */
+.cookie-banner {
+  animation: cookie-in .28s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.cookie-button-primary,
+.cookie-button-secondary {
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.cookie-button-primary:hover,
+.cookie-button-secondary:hover { transform: translateY(-1px); }
+.cookie-button-secondary:hover { background: var(--color-brand-cream); }
+
+@keyframes cookie-in {
+  from { opacity: 0; transform: translate(-50%, .75rem) scale(.985); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+@media (max-width: 719px) {
+  .footer-actions-row { align-items: flex-start; }
+  .social-link { width: 2.7rem; height: 2.7rem; }
+  .cookie-banner { width: min(calc(100% - 1rem), 31rem); bottom: .5rem; }
+}
+
+/* V12 — header socials, viewport-fit carousels and preference controls --- */
+.header-actions {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .48rem;
+}
+
+.social-links--header { gap: .34rem; }
+
+.social-links--header .social-link {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-color: color-mix(in srgb, var(--color-brand-line) 82%, white);
+  background: rgba(255,255,255,.72);
+  color: color-mix(in srgb, var(--color-brand-brown) 78%, var(--color-brand-muted));
+  box-shadow: 0 5px 16px rgba(56,37,27,.05), inset 0 1px 0 rgba(255,255,255,.9);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+}
+
+.social-links--header .social-link svg { width: 1rem; height: 1rem; }
+
+.social-links--header .social-link:hover {
+  border-color: color-mix(in srgb, var(--color-brand-terracotta) 28%, var(--color-brand-line));
+  background: rgba(255,255,255,.98);
+  color: var(--color-brand-brown);
+  box-shadow: 0 9px 22px rgba(56,37,27,.09), inset 0 1px 0 white;
+}
+
+/* Keep the entire Books composition visible within normal landscape
+   viewports. Portrait phone keeps the book-like 4:5 cover ratio. */
+@media (min-width: 720px) {
+  #products .product-track { margin-top: clamp(1rem, 2.4vh, 1.75rem); }
+
+  #products .product-cover {
+    height: clamp(14rem, 34svh, 27rem);
+    aspect-ratio: auto;
+  }
+
+  #products h2 { font-size: clamp(2.2rem, 4.4vw, 4.15rem); }
+  #products .surface { min-height: 0; }
+}
+
+@media (min-width: 1200px) {
+  #products.section-shell { max-width: 1360px; }
+}
+
+/* The control must be genuinely absent at the top, not only transparent. */
+.back-to-top { visibility: hidden; }
+.back-to-top.is-visible { visibility: visible; }
+
+.footer-meta-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: .9rem;
+}
+
+.footer-preferences-button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: rgba(255,255,255,.46);
+  font: inherit;
+  cursor: pointer;
+  transition: color .18s ease;
+}
+
+.footer-preferences-button:hover { color: rgba(255,255,255,.82); }
+
+@media (max-width: 719px) {
+  .header-actions { gap: .3rem; }
+  .social-links--header { gap: .22rem; }
+  .social-links--header .social-link { width: 2.05rem; height: 2.05rem; }
+  .social-links--header .social-link svg { width: .9rem; height: .9rem; }
+  .footer-meta-actions { flex-wrap: wrap; gap: .55rem .8rem; }
+}
+
+@media (max-width: 380px) {
+  .header-mark-frame { width: 2.45rem; height: 2.45rem; flex-basis: 2.45rem; }
+  .header-brand-lockup { gap: .42rem; }
+  .header-brand-name { font-size: .74rem; letter-spacing: .075em; }
+  .social-links--header .social-link { width: 1.88rem; height: 1.88rem; }
+  .language-trigger { width: 2.28rem; height: 2.28rem; padding: .34rem; }
+  .language-trigger > .language-flag { width: 1.36rem; height: 1.36rem; flex-basis: 1.36rem; }
+}
+
+/* V12 final pass — subtler canvas + reliable viewport fit ---------------- */
+body {
+  background:
+    radial-gradient(circle at 8% 3%, color-mix(in srgb, var(--color-brand-sun) 7%, transparent), transparent 30rem),
+    radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--color-brand-leaf) 5%, transparent), transparent 32rem),
+    var(--color-brand-paper);
+}
+
+.section-tone-hero::before {
+  background:
+    radial-gradient(circle at 8% 18%, color-mix(in srgb, var(--color-brand-sun) 7%, transparent), transparent 30rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-brand-cream) 18%, white), var(--color-brand-paper));
+}
+
+.section-tone-products::before {
+  background:
+    radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--color-brand-leaf) 6%, transparent), transparent 31rem),
+    linear-gradient(180deg, var(--color-brand-paper), color-mix(in srgb, var(--color-brand-leaf) 2%, var(--color-brand-paper)));
+}
+
+.section-tone-opinions::before {
+  background:
+    radial-gradient(circle at 12% 80%, color-mix(in srgb, var(--color-brand-terracotta) 4%, transparent), transparent 28rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-brand-sun) 2%, var(--color-brand-paper)), color-mix(in srgb, var(--color-brand-cream) 10%, var(--color-brand-paper)));
+}
+
+.section-tone-contact::before {
+  background:
+    radial-gradient(circle at 88% 22%, color-mix(in srgb, var(--color-brand-sun) 6%, transparent), transparent 30rem),
+    radial-gradient(circle at 12% 76%, color-mix(in srgb, var(--color-brand-leaf) 4%, transparent), transparent 29rem),
+    var(--color-brand-paper);
+}
+
+/* Landscape/tablet/desktop: keep the hero and complete Books composition
+   inside the available viewport. Portrait phones intentionally keep the
+   taller 4:5 book treatment and finger-driven horizontal rail. */
+@media (min-width: 720px) and (orientation: landscape) {
+  :root { --section-pad-y: clamp(.85rem, 2.2vh, 1.55rem); }
+
+  .hero-card {
+    min-height: calc(100svh - var(--header-height) - (var(--section-pad-y) * 2));
+  }
+
+  .hero-copy { padding-block: clamp(1.45rem, 3.8vh, 3rem); }
+  .hero-art { padding-block: clamp(1.25rem, 3.2vh, 2.75rem); }
+  .hero-books-stage { max-width: min(470px, 52vh); }
+
+  #products .product-track { margin-top: clamp(.75rem, 1.8vh, 1.25rem); }
+  #products .product-card { min-height: 0; }
+  #products .product-cover {
+    height: clamp(10.5rem, 26svh, 22rem);
+    min-height: 0;
+    aspect-ratio: auto;
+    padding: clamp(.85rem, 1.45vw, 1.25rem);
+  }
+  #products .product-cover-title { margin-top: .45rem; font-size: clamp(1.2rem, 2vw, 1.75rem); }
+  #products .product-cover-icon { font-size: clamp(2.7rem, 7vh, 4.5rem); }
+  #products .product-cover-meta { font-size: .68rem; }
+  #products .product-copy { padding-top: clamp(.7rem, 1.45vh, 1.05rem); }
+  #products .product-copy h3 {
+    margin-top: clamp(.6rem, 1.3vh, .9rem);
+    font-size: clamp(1.3rem, 1.8vw, 1.62rem);
+  }
+  #products .product-copy p {
+    margin-top: .38rem;
+    font-size: clamp(.82rem, 1vw, .94rem);
+    line-height: 1.42;
+  }
+  #products .product-copy > div:last-child { padding-top: clamp(.6rem, 1.35vh, .95rem); }
+  #products .chip { min-height: 1.65rem; padding: .3rem .58rem; font-size: .68rem; }
+  #products .coming-soon-state { padding: .58rem .72rem; }
+}
+
+@media (min-width: 720px) and (orientation: landscape) and (max-height: 760px) {
+  #products h2 { font-size: clamp(2rem, 4vw, 3.35rem); }
+  #products p { line-height: 1.42; }
+  #products .product-cover { height: clamp(8.3rem, 24svh, 12.8rem); }
+  #products .product-cover-title { font-size: 1.15rem; }
+  #products .product-cover-icon { font-size: 2.55rem; }
+  #products .product-cover-brand { font-size: .58rem; }
+  #products .product-cover-meta { font-size: .62rem; }
+  #products .product-copy { padding-bottom: .25rem; }
+  #products .product-copy h3 { font-size: 1.28rem; }
+  #products .product-copy p { font-size: .8rem; }
+
+  .hero-books-stage { max-width: min(410px, 48vh); }
+  .hero-copy h1 { font-size: clamp(2.55rem, 6vw, 4.65rem); }
+  .hero-copy p { margin-top: 1rem; line-height: 1.48; }
+  .hero-copy > div > div:last-child { margin-top: 1.15rem; }
+}
+
+@media (max-width: 719px) and (orientation: portrait) {
+  #products .product-cover { height: auto; aspect-ratio: 4 / 5; }
+}
+
+/* Very small phones still keep brand + socials + language visible. */
+@media (max-width: 345px) {
+  .header-brand-lockup { gap: .34rem; }
+  .header-mark-frame { width: 2.25rem; height: 2.25rem; flex-basis: 2.25rem; }
+  .header-brand-name { font-size: .67rem; letter-spacing: .06em; }
+  .social-links--header { gap: .16rem; }
+  .social-links--header .social-link { width: 1.68rem; height: 1.68rem; }
+  .social-links--header .social-link svg { width: .78rem; height: .78rem; }
+  .language-trigger { width: 2.14rem; height: 2.14rem; padding: .31rem; }
+  .language-trigger > .language-flag { width: 1.24rem; height: 1.24rem; flex-basis: 1.24rem; }
+}
+
+/* V13 — product section polish -------------------------------------------
+   Keep the product area visually continuous with the page canvas while
+   restoring a little more vertical presence to the books. */
+.section-tone-products::before {
+  background:
+    radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--color-brand-leaf) 5%, transparent), transparent 31rem),
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--color-brand-leaf) 1.6%, transparent) 20%,
+      color-mix(in srgb, var(--color-brand-leaf) 2.2%, transparent) 50%,
+      color-mix(in srgb, var(--color-brand-leaf) 1.6%, transparent) 80%,
+      transparent 100%
+    );
+}
+
+#products .product-card {
+  background: color-mix(in srgb, white 84%, var(--color-brand-paper));
+  border-color: color-mix(in srgb, var(--color-brand-line) 62%, white);
+  box-shadow: 0 18px 56px rgba(56, 37, 27, .065), 0 2px 8px rgba(56, 37, 27, .025);
+}
+
+@media (min-width: 720px) and (orientation: landscape) {
+  #products .product-cover {
+    height: clamp(12rem, 30svh, 24rem);
+  }
+}
+
+@media (min-width: 720px) and (orientation: landscape) and (max-height: 760px) {
+  #products .product-cover {
+    height: clamp(9.3rem, 27svh, 14.5rem);
+  }
+}
+
+/* V14 — borderless editorial carousels + responsive layout modes ---------
+   Large landscape: calm grid, no rail chrome when everything fits.
+   Medium: horizontal rail only where space actually requires it.
+   Portrait phone: finger-first single-card rail without visible scrollbar. */
+.section-tone-products::before,
+.section-tone-opinions::before {
+  background: transparent;
+}
+
+.section-tone-products::after,
+.section-tone-opinions::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.section-tone-products::after {
+  background:
+    radial-gradient(circle at 90% 22%, color-mix(in srgb, var(--color-brand-leaf) 5%, transparent), transparent 32rem),
+    radial-gradient(circle at 12% 84%, color-mix(in srgb, var(--color-brand-sun) 3.5%, transparent), transparent 28rem);
+}
+
+.section-tone-opinions::after {
+  background:
+    radial-gradient(circle at 10% 20%, color-mix(in srgb, var(--color-brand-terracotta) 3.5%, transparent), transparent 30rem),
+    radial-gradient(circle at 86% 82%, color-mix(in srgb, var(--color-brand-sun) 4%, transparent), transparent 30rem);
+}
+
+/* Products are editorial tiles rather than cards inside another card. */
+#products .product-story {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+#products .product-cover {
+  box-shadow: 0 18px 44px rgba(56, 37, 27, .07), 0 2px 8px rgba(56, 37, 27, .025);
+  transform: translateZ(0);
+  transition: transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .32s ease;
+}
+
+#products .product-story:hover .product-cover {
+  transform: translateY(-4px) scale(1.004);
+  box-shadow: 0 26px 62px rgba(56, 37, 27, .11), 0 4px 12px rgba(56, 37, 27, .035);
+}
+
+#products .product-copy {
+  padding-left: .3rem;
+  padding-right: .3rem;
+}
+
+/* Reviews use a media tile + free-floating copy. No outer review box. */
+#opinions .testimonial-story {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+#opinions .testimonial-video {
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  border: 1px solid rgba(255,255,255,.68);
+  border-radius: clamp(1.45rem, 2vw, 2rem);
+  background:
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--color-brand-sun) 12%, transparent), transparent 15rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--color-brand-cream) 58%, white), white 58%, color-mix(in srgb, var(--color-brand-leaf) 7%, white));
+  box-shadow: 0 18px 48px rgba(56,37,27,.065), inset 0 1px 0 rgba(255,255,255,.9);
+  transition: transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .32s ease;
+}
+
+#opinions .testimonial-story:hover .testimonial-video {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 64px rgba(56,37,27,.095), inset 0 1px 0 white;
+}
+
+#opinions .testimonial-copy {
+  min-height: 0;
+  justify-content: flex-start;
+  padding: 1.05rem .3rem 0;
+}
+
+#opinions .testimonial-copy blockquote {
+  margin-top: 1rem;
+  font-size: clamp(1.25rem, 1.65vw, 1.72rem);
+  line-height: 1.12;
+}
+
+#opinions .testimonial-copy p:last-child { margin-top: 1rem; }
+
+/* Portrait phone: one main item, visible next-item hint, swipe only. */
+@media (max-width: 719px) and (orientation: portrait) {
+  #products .catalog-track,
+  #opinions .testimonials-track {
+    gap: .9rem;
+    padding-right: var(--shell-gutter);
+  }
+
+  #products .product-slide { flex-basis: 89%; }
+  #opinions .testimonial-slide { flex-basis: 92%; }
+
+  #products .product-cover { aspect-ratio: 4 / 5; height: auto; }
+  #products .product-copy { padding-top: 1rem; }
+
+  #opinions .testimonial-card-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  #opinions .testimonial-video { aspect-ratio: 4 / 3; }
+  #opinions .testimonial-copy { padding-top: .95rem; }
+}
+
+/* Medium screens: rail is intentional. Products show two; reviews use a
+   wider editorial story with media and copy side by side. */
+@media (min-width: 720px) and (max-width: 1199px) {
+  #products .catalog-track { align-items: stretch; }
+  #products .product-slide { flex-basis: calc((100% - var(--track-gap)) / 2); }
+  #products .product-cover { height: clamp(15rem, 34svh, 22rem); }
+
+  #opinions .testimonials-track { align-items: stretch; }
+  #opinions .testimonial-slide { flex-basis: min(82%, 54rem); }
+  #opinions .testimonial-card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+    align-items: stretch;
+    gap: clamp(1rem, 2.3vw, 1.6rem);
+  }
+  #opinions .testimonial-video { aspect-ratio: auto; min-height: clamp(17rem, 39svh, 24rem); }
+  #opinions .testimonial-copy { justify-content: center; padding: .65rem .15rem; }
+  #opinions .testimonial-copy blockquote { font-size: clamp(1.55rem, 2.7vw, 2.15rem); }
+}
+
+/* Large landscape: three calm columns with no scrollbar/rail chrome when the
+   current set fits. If a fourth item is added, :has() automatically restores
+   a scalable horizontal rail instead of creating a second row. */
+@media (min-width: 1200px) {
+  #products .catalog-track,
+  #opinions .testimonials-track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+  }
+
+  #products .product-slide,
+  #opinions .testimonial-slide { min-width: 0; flex: none; }
+
+  #products .product-cover { height: clamp(18rem, 37svh, 27rem); }
+
+  #opinions .testimonial-card-grid {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+  #opinions .testimonial-video { aspect-ratio: 4 / 3; }
+  #opinions .testimonial-copy { flex: 1; }
+
+  #products .catalog-track:has(> :nth-child(4)),
+  #opinions .testimonials-track:has(> :nth-child(4)) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+  }
+
+  #products .catalog-track:has(> :nth-child(4)) > .product-slide,
+  #opinions .testimonials-track:has(> :nth-child(4)) > .testimonial-slide {
+    flex: 0 0 calc((100% - (var(--track-gap) * 2)) / 3);
+  }
+}
+
+@media (min-width: 1200px) and (max-height: 760px) {
+  #products .product-cover { height: clamp(12.25rem, 31svh, 16.5rem); }
+  #products .product-copy { padding-top: .8rem; }
+  #opinions .testimonial-video { aspect-ratio: 16 / 9; }
+  #opinions .testimonial-copy { padding-top: .75rem; }
+  #opinions .testimonial-copy blockquote { font-size: clamp(1.2rem, 1.45vw, 1.5rem); }
+}
+
+/* Fancy, still-accessible back-to-top affordance. */
+.back-to-top {
+  position: fixed;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.back-to-top::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -35%;
+  border-radius: inherit;
+  background: conic-gradient(from 220deg, transparent 0 34%, color-mix(in srgb, var(--color-brand-sun) 32%, transparent) 45%, color-mix(in srgb, var(--color-brand-terracotta) 20%, transparent) 56%, transparent 68% 100%);
+  opacity: 0;
+  transform: rotate(-25deg) scale(.75);
+  transition: opacity .3s ease, transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.back-to-top-icon {
+  display: grid;
+  width: 1.25rem;
+  height: 1.25rem;
+  place-items: center;
+  border-radius: 999px;
+  transition: transform .28s cubic-bezier(.2,.8,.2,1), color .22s ease;
+}
+
+.back-to-top-icon svg { width: 1.05rem; height: 1.05rem; }
+
+.back-to-top:hover {
+  transform: translateY(-3px) scale(1.025);
+  border-color: color-mix(in srgb, var(--color-brand-sun) 38%, var(--color-brand-line));
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 18px 42px rgba(56,37,27,.15), 0 0 0 5px color-mix(in srgb, var(--color-brand-sun) 8%, transparent);
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23d7735d'/%3E%3Cpath d='M16 22V10M11.5 14.5 16 10l4.5 4.5' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 16 16, pointer;
+}
+
+.back-to-top:hover::before { opacity: 1; transform: rotate(32deg) scale(1); }
+.back-to-top:hover .back-to-top-icon { animation: back-to-top-arrow .72s cubic-bezier(.2,.8,.2,1) both; color: var(--color-brand-terracotta); }
+
+@keyframes back-to-top-arrow {
+  0% { transform: translateY(0) scale(1); }
+  42% { transform: translateY(-5px) scale(1.08); }
+  62% { transform: translateY(2px) scale(.98); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top:hover .back-to-top-icon { animation: none; }
+}
+
+/* V15 — stable hero artwork + portrait-first navigation -----------------
+   The two hero books use minmax(0, 1fr) so long labels can never make one
+   visual narrower than the other. Portrait navigation moves social actions
+   to a compact second row, preserving the full brand name and language
+   control without crowding the primary row. */
+.hero-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.hero-copy,
+.hero-copy-inner,
+.hero-art,
+.hero-books-stage,
+.hero-book-grid,
+.hero-book-card,
+.hero-book-cover {
+  min-width: 0;
+}
+
+.hero-book-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.hero-book-card {
+  width: 100%;
+  max-width: 100%;
+  transform-origin: center;
+}
+
+.hero-book-cover {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-book-title {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: clamp(.8rem, 2.45vw, 1.6rem);
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.header-social-dock,
+.header-language {
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (min-width: 720px) and (max-width: 1199px) {
+  .hero-layout { grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr); }
+}
+
+@media (min-width: 1200px) {
+  .hero-layout { grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr); }
+}
+
+/* Portrait phones get a two-level navigation hierarchy:
+   row 1 = brand + language, row 2 = a tiny social dock. */
+@media (max-width: 719px) and (orientation: portrait) {
+  :root {
+    --header-height: 6.45rem;
+  }
+
+  .site-header {
+    padding-block: .35rem .25rem;
+  }
+
+  .nav-surface {
+    display: grid !important;
+    min-height: 0 !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand language"
+      "social social";
+    column-gap: .55rem;
+    row-gap: .26rem;
+    border-radius: 1.55rem !important;
+    padding: .42rem .48rem .4rem .65rem !important;
+  }
+
+  .header-brand-mark {
+    grid-area: brand;
+    width: min-content;
+    max-width: 100%;
+  }
+
+  .header-brand-lockup {
+    width: max-content;
+    max-width: 100%;
+    gap: .52rem;
+  }
+
+  .header-mark-frame {
+    width: 2.45rem;
+    height: 2.45rem;
+    flex-basis: 2.45rem;
+  }
+
+  .header-brand-name {
+    min-width: 0;
+    overflow: hidden;
+    font-size: .82rem;
+    letter-spacing: .085em;
+    text-overflow: ellipsis;
+  }
+
+  .header-actions {
+    display: contents;
+  }
+
+  .header-language {
+    grid-area: language;
+    justify-self: end;
+  }
+
+  .header-social-dock {
+    grid-area: social;
+    justify-self: end;
+    padding-right: .12rem;
+  }
+
+  .social-links--header {
+    gap: .2rem;
+  }
+
+  .social-links--header .social-link {
+    width: 1.78rem;
+    height: 1.78rem;
+    border-color: transparent;
+    background: rgba(255,255,255,.48);
+    box-shadow: none;
+  }
+
+  .social-links--header .social-link svg {
+    width: .78rem;
+    height: .78rem;
+  }
+
+  .language-trigger {
+    width: 2.32rem;
+    height: 2.32rem;
+    padding: .34rem;
+  }
+
+  .language-trigger > .language-flag {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-basis: 1.4rem;
+  }
+
+  .hero-card {
+    min-height: calc(100svh - var(--header-height) - 1.2rem);
+  }
+
+  .hero-layout {
+    grid-template-rows: auto minmax(250px, 1fr);
+  }
+
+  .hero-copy {
+    padding: 1.35rem 1.3rem .85rem;
+  }
+
+  .hero-art {
+    min-height: 250px;
+    padding: .9rem 1.05rem 1.15rem;
+  }
+
+  .hero-books-stage {
+    width: min(100%, 21rem);
+  }
+
+  .hero-book-grid {
+    gap: clamp(.55rem, 3.4vw, .9rem);
+  }
+
+  .hero-book-card {
+    border-radius: 1.45rem;
+    padding: clamp(.42rem, 2vw, .62rem);
+  }
+
+  .hero-book-cover {
+    border-radius: 1.08rem;
+    padding: clamp(.68rem, 3.3vw, .95rem);
+  }
+
+  .hero-book-title {
+    font-size: clamp(.76rem, 4.05vw, 1.05rem);
+  }
+}
+
+@media (max-width: 380px) and (orientation: portrait) {
+  .header-brand-name {
+    font-size: .78rem;
+    letter-spacing: .07em;
+  }
+
+  .header-mark-frame {
+    width: 2.3rem;
+    height: 2.3rem;
+    flex-basis: 2.3rem;
+  }
+
+  .hero-copy {
+    padding-inline: 1.12rem;
+  }
+
+  .hero-book-title {
+    font-size: clamp(.72rem, 3.9vw, .92rem);
+  }
+}
+
+@media (max-width: 345px) and (orientation: portrait) {
+  .header-brand-name {
+    font-size: .75rem;
+    letter-spacing: .06em;
+  }
+
+  .social-links--header .social-link {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+
+  .language-trigger {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
+
+/* V17 — single-row responsive navigation ---------------------------------
+   Large landscape keeps the full navigation + socials. When space becomes
+   constrained, navigation and socials collapse into one accessible hamburger
+   menu while brand + language remain visible in the same row. */
+.desktop-primary-nav,
+.desktop-header-socials {
+  display: none;
+}
+
+.compact-header-menu {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hamburger-trigger {
+  display: grid;
+  width: 2.68rem;
+  height: 2.68rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-brand-line) 82%, white);
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  color: var(--color-brand-brown);
+  box-shadow: 0 5px 16px rgba(56,37,27,.05), inset 0 1px 0 rgba(255,255,255,.9);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  cursor: pointer;
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.hamburger-trigger:hover {
+  transform: translateY(-1px) scale(1.02);
+  border-color: color-mix(in srgb, var(--color-brand-terracotta) 26%, var(--color-brand-line));
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 9px 22px rgba(56,37,27,.09), inset 0 1px 0 white;
+}
+
+.hamburger-lines {
+  position: relative;
+  display: block;
+  width: 1.02rem;
+  height: .8rem;
+}
+
+.hamburger-lines > span {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  transform-origin: center;
+  transition: top .2s ease, transform .22s cubic-bezier(.2,.8,.2,1), opacity .16s ease;
+}
+
+.hamburger-lines > span:nth-child(1) { top: 0; }
+.hamburger-lines > span:nth-child(2) { top: calc(50% - .75px); }
+.hamburger-lines > span:nth-child(3) { top: calc(100% - 1.5px); }
+
+.hamburger-trigger[data-state="open"] .hamburger-lines > span:nth-child(1) {
+  top: calc(50% - .75px);
+  transform: rotate(45deg);
+}
+.hamburger-trigger[data-state="open"] .hamburger-lines > span:nth-child(2) { opacity: 0; }
+.hamburger-trigger[data-state="open"] .hamburger-lines > span:nth-child(3) {
+  top: calc(50% - .75px);
+  transform: rotate(-45deg);
+}
+
+.header-menu-panel {
+  z-index: 80;
+  width: min(19rem, calc(100vw - 1.25rem));
+  overflow: hidden;
+  border: 1px solid rgba(236,227,218,.95);
+  border-radius: 1.45rem;
+  background: rgba(255,253,249,.96);
+  padding: .5rem;
+  color: var(--color-brand-brown);
+  box-shadow: 0 24px 70px rgba(56,37,27,.18), inset 0 1px 0 rgba(255,255,255,.94);
+  backdrop-filter: blur(26px) saturate(145%);
+  -webkit-backdrop-filter: blur(26px) saturate(145%);
+  animation: header-menu-in .2s cubic-bezier(.16,1,.3,1);
+  transform-origin: top right;
+}
+
+@keyframes header-menu-in {
+  from { opacity: 0; transform: translateY(-.4rem) scale(.96); }
+  to { opacity: 1; transform: none; }
+}
+
+.header-menu-nav {
+  display: grid;
+  gap: .12rem;
+}
+
+.header-menu-link {
+  display: flex;
+  min-height: 3.2rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 1rem;
+  padding: .75rem .9rem;
+  color: var(--color-brand-brown);
+  font-size: .93rem;
+  font-weight: 850;
+  outline: none;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.header-menu-link:hover,
+.header-menu-link:focus-visible,
+.header-menu-link[data-highlighted] {
+  background: color-mix(in srgb, var(--color-brand-cream) 76%, white);
+  transform: translateX(.12rem);
+}
+
+.header-menu-link > span:last-child {
+  color: color-mix(in srgb, var(--color-brand-brown) 36%, transparent);
+  font-weight: 700;
+}
+
+.header-menu-divider {
+  height: 1px;
+  margin: .42rem .45rem .55rem;
+  background: color-mix(in srgb, var(--color-brand-line) 90%, transparent);
+}
+
+.header-menu-socials {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .25rem .42rem .38rem .75rem;
+}
+
+.header-menu-caption {
+  color: var(--color-brand-muted);
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.social-links--menu {
+  gap: .34rem;
+}
+
+.social-links--menu .social-link {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-color: color-mix(in srgb, var(--color-brand-line) 85%, white);
+  background: white;
+  color: var(--color-brand-brown);
+  box-shadow: 0 5px 14px rgba(56,37,27,.06);
+}
+
+.social-links--menu .social-link svg {
+  width: .96rem;
+  height: .96rem;
+}
+
+.social-links--menu .social-link:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--color-brand-terracotta) 28%, var(--color-brand-line));
+  background: var(--color-brand-cream);
+  color: var(--color-brand-brown);
+}
+
+/* The header must remain a single row on tablet and portrait phones. */
+@media (max-width: 1179px) {
+  .site-header {
+    padding-block: .4rem;
+  }
+
+  .nav-surface {
+    display: flex !important;
+    min-height: calc(var(--header-height) - .8rem) !important;
+    grid-template-areas: none !important;
+    grid-template-columns: none !important;
+    border-radius: 999px !important;
+    padding: .38rem .48rem .38rem .65rem !important;
+  }
+
+  .header-actions {
+    display: inline-flex !important;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: .34rem;
+  }
+
+  .header-language,
+  .compact-header-menu {
+    display: inline-flex;
+    grid-area: auto !important;
+    justify-self: auto !important;
+  }
+
+  .header-brand-mark {
+    grid-area: auto !important;
+    width: auto;
+    min-width: 0;
+    max-width: min(62vw, 18rem);
+  }
+
+  .header-brand-lockup {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .header-brand-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (min-width: 1180px) {
+  .desktop-primary-nav,
+  .desktop-header-socials {
+    display: flex;
+  }
+
+  .compact-header-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 719px) and (orientation: portrait) {
+  :root { --header-height: 4.75rem; }
+
+  .header-mark-frame {
+    width: 2.42rem;
+    height: 2.42rem;
+    flex-basis: 2.42rem;
+  }
+
+  .header-brand-lockup { gap: .5rem; }
+
+  .header-brand-name {
+    font-size: .8rem;
+    letter-spacing: .08em;
+  }
+
+  .language-trigger,
+  .hamburger-trigger {
+    width: 2.34rem;
+    height: 2.34rem;
+  }
+
+  .language-trigger > .language-flag {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-basis: 1.4rem;
+  }
+
+  .hero-card {
+    min-height: calc(100svh - var(--header-height) - 1.2rem);
+  }
+}
+
+@media (max-width: 380px) and (orientation: portrait) {
+  .header-brand-name {
+    font-size: .74rem;
+    letter-spacing: .065em;
+  }
+
+  .header-mark-frame {
+    width: 2.28rem;
+    height: 2.28rem;
+    flex-basis: 2.28rem;
+  }
+
+  .language-trigger,
+  .hamburger-trigger {
+    width: 2.22rem;
+    height: 2.22rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-menu-panel,
+  .hamburger-lines > span,
+  .hamburger-trigger {
+    animation: none !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* V18 — full-cover geometry + interactive hero books ----------------------
+   Real covers keep their natural print-cover proportions instead of being
+   cropped into 4:5 tiles. Hero covers become Amazon entry points with a
+   restrained depth/shine interaction. Portrait product browsing shows one
+   complete product per viewport width, then snaps to the next. */
+#products .product-cover-real {
+  height: auto !important;
+  aspect-ratio: auto !important;
+}
+
+#products .product-cover-real img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+#products .roadmap-visual {
+  height: auto !important;
+  aspect-ratio: .769 / 1 !important;
+}
+
+.hero-book-cover {
+  height: auto !important;
+  aspect-ratio: auto !important;
+}
+
+.hero-book-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.hero-book-interactive {
+  position: relative;
+  isolation: isolate;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    transform .42s cubic-bezier(.16, 1, .3, 1),
+    box-shadow .42s ease,
+    filter .42s ease;
+}
+
+.hero-book-interactive::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: .55rem;
+  border-radius: 1.42rem;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 18%, rgba(255,255,255,.34) 42%, transparent 62%);
+  opacity: 0;
+  transform: translateX(-38%);
+  transition: opacity .28s ease, transform .52s cubic-bezier(.16,1,.3,1);
+}
+
+.hero-book-interactive:hover,
+.hero-book-interactive:focus-visible {
+  z-index: 4;
+  box-shadow: 0 38px 90px rgba(56,37,27,.2), 0 8px 24px rgba(56,37,27,.08);
+  filter: saturate(1.035);
+  outline: none;
+}
+
+.hero-book-left:hover,
+.hero-book-left:focus-visible {
+  transform: translateY(.45rem) rotate(-1.4deg) scale(1.045);
+}
+
+.hero-book-right:hover,
+.hero-book-right:focus-visible {
+  transform: translateY(-.75rem) rotate(1.4deg) scale(1.045);
+}
+
+.hero-book-interactive:hover::after,
+.hero-book-interactive:focus-visible::after {
+  opacity: 1;
+  transform: translateX(38%);
+}
+
+.hero-book-hover-cta {
+  position: absolute;
+  right: .7rem;
+  bottom: .7rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: .38rem;
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 999px;
+  background: rgba(56,37,27,.88);
+  padding: .46rem .68rem;
+  color: white;
+  font-size: .62rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  opacity: 0;
+  box-shadow: 0 12px 28px rgba(56,37,27,.22);
+  backdrop-filter: blur(14px);
+  transform: translateY(.45rem) scale(.96);
+  transition: opacity .25s ease, transform .32s cubic-bezier(.16,1,.3,1);
+}
+
+.hero-book-interactive:hover .hero-book-hover-cta,
+.hero-book-interactive:focus-visible .hero-book-hover-cta {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-book-unavailable {
+  cursor: default;
+}
+
+.hero-book-unavailable:hover {
+  filter: none;
+}
+
+@media (max-width: 719px) and (orientation: portrait) {
+  #products .catalog-track {
+    gap: 1rem;
+    padding-right: 0;
+    scroll-padding-inline: 0;
+  }
+
+  #products .product-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  #products .product-cover-real,
+  #products .roadmap-visual {
+    width: 100%;
+  }
+
+  .hero-book-hover-cta {
+    display: none;
+  }
+}
+
+@media (hover: none) {
+  .hero-book-interactive:hover {
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-book-interactive,
+  .hero-book-interactive::after,
+  .hero-book-hover-cta {
+    transition: none;
+  }
+}
+
+/* V19 — polished cover shine, refined compact menu, viewport-fit books ----- */
+/* The product artwork gets the same restrained holographic light sweep as
+   the interactive hero covers. It stays decorative and never blocks clicks. */
+#products .product-cover-frame {
+  isolation: isolate;
+}
+
+#products .product-cover-frame::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: -26%;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      112deg,
+      transparent 25%,
+      rgba(255,255,255,.08) 33%,
+      rgba(242,199,100,.22) 39%,
+      rgba(255,255,255,.62) 46%,
+      rgba(136,170,121,.19) 52%,
+      rgba(215,115,93,.15) 57%,
+      transparent 67%
+    );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translate3d(-38%, 18%, 0) rotate(7deg);
+  transition: opacity .26s ease, transform .62s cubic-bezier(.16,1,.3,1);
+}
+
+#products .product-cover-badge {
+  z-index: 4;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #products .product-story:hover .product-cover-frame::after,
+  #products .product-story:focus-within .product-cover-frame::after {
+    opacity: .92;
+    transform: translate3d(34%, -14%, 0) rotate(7deg);
+  }
+}
+
+/* All three hamburger strokes are integer-pixel, equal-weight elements.
+   The warm terracotta treatment belongs to the MIMA palette and the opening
+   motion turns the three lines into a soft X without introducing black UI. */
+.hamburger-trigger {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-color: color-mix(in srgb, var(--color-brand-terracotta) 18%, var(--color-brand-line));
+  background: color-mix(in srgb, white 88%, var(--color-brand-cream));
+  color: var(--color-brand-terracotta);
+}
+
+.hamburger-trigger::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-brand-sun) 20%, transparent), transparent 68%);
+  opacity: 0;
+  transform: scale(.5);
+  transition: opacity .28s ease, transform .34s cubic-bezier(.16,1,.3,1);
+}
+
+.hamburger-trigger:hover,
+.hamburger-trigger[data-state="open"] {
+  border-color: color-mix(in srgb, var(--color-brand-terracotta) 34%, var(--color-brand-line));
+  background: color-mix(in srgb, white 82%, var(--color-brand-cream));
+  box-shadow: 0 10px 26px rgba(56,37,27,.08), inset 0 1px 0 white;
+}
+
+.hamburger-trigger:hover::before,
+.hamburger-trigger[data-state="open"]::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hamburger-lines {
+  width: 1.04rem;
+  height: .875rem;
+}
+
+.hamburger-lines > span {
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand-terracotta), color-mix(in srgb, var(--color-brand-brown) 72%, var(--color-brand-terracotta)));
+  box-shadow: none;
+  transition: top .25s cubic-bezier(.16,1,.3,1), transform .3s cubic-bezier(.16,1,.3,1), opacity .16s ease;
+}
+
+.hamburger-lines > span:nth-child(1) { top: 1px; }
+.hamburger-lines > span:nth-child(2) { top: 6px; }
+.hamburger-lines > span:nth-child(3) { top: 11px; }
+
+.hamburger-trigger:not([data-state="open"]):hover .hamburger-lines > span:nth-child(1) { transform: translateX(1px); }
+.hamburger-trigger:not([data-state="open"]):hover .hamburger-lines > span:nth-child(2) { transform: translateX(-1px); }
+.hamburger-trigger:not([data-state="open"]):hover .hamburger-lines > span:nth-child(3) { transform: translateX(1px); }
+
+.hamburger-trigger[data-state="open"] .hamburger-lines > span:nth-child(1) {
+  top: 6px;
+  transform: rotate(45deg);
+}
+.hamburger-trigger[data-state="open"] .hamburger-lines > span:nth-child(2) {
+  top: 6px;
+  opacity: 0;
+  transform: scaleX(.4);
+}
+.hamburger-trigger[data-state="open"] .hamburger-lines > span:nth-child(3) {
+  top: 6px;
+  transform: rotate(-45deg);
+}
+
+/* Menu-social hover remains high-contrast: warm color in the surface, dark
+   icon on top. */
+.social-links--menu .social-link:hover,
+.social-links--menu .social-link:focus-visible {
+  border-color: color-mix(in srgb, var(--color-brand-leaf) 32%, var(--color-brand-line));
+  background: color-mix(in srgb, var(--color-brand-leaf) 18%, white);
+  color: color-mix(in srgb, var(--color-brand-brown) 92%, black);
+  box-shadow: 0 10px 22px rgba(56,37,27,.09);
+}
+
+/* Landscape mode prioritizes one-screen composition. Covers keep the complete
+   uploaded artwork and scale by viewport height instead of overflowing below
+   the section. */
+@media (min-width: 720px) and (orientation: landscape) {
+  #products.viewport-section {
+    min-height: calc(100svh - var(--header-height));
+    padding-block: clamp(.7rem, 1.7vh, 1.2rem);
+  }
+
+  #products .product-track {
+    margin-top: clamp(.55rem, 1.3vh, 1rem);
+  }
+
+  #products .product-cover-real,
+  #products .roadmap-visual {
+    width: min(100%, clamp(10.5rem, 31vh, 17rem));
+    margin-inline: auto;
+  }
+
+  #products .product-copy {
+    padding-top: clamp(.55rem, 1.15vh, .85rem);
+  }
+
+  #products .product-copy h3 {
+    margin-top: clamp(.45rem, .9vh, .7rem);
+  }
+
+  #products .product-copy > div:last-child {
+    padding-top: clamp(.45rem, 1vh, .7rem);
+  }
+}
+
+@media (min-width: 1200px) and (orientation: landscape) {
+  #products .product-cover-real,
+  #products .roadmap-visual {
+    width: min(100%, clamp(11rem, 29vh, 16.5rem));
+  }
+}
+
+@media (min-width: 720px) and (orientation: landscape) and (max-height: 760px) {
+  #products .product-cover-real,
+  #products .roadmap-visual {
+    width: min(100%, clamp(8.8rem, 27vh, 12.8rem));
+  }
+
+  #products .product-copy h3 { font-size: clamp(1.08rem, 1.55vw, 1.3rem); }
+  #products .product-copy p { font-size: .78rem; line-height: 1.35; }
+  #products .chip { min-height: 1.5rem; padding: .25rem .5rem; font-size: .64rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #products .product-cover-frame::after,
+  .hamburger-trigger::before,
+  .hamburger-lines > span {
+    transition: none !important;
+  }
+}
+
+/* V20 — unified responsive book gallery -----------------------------------
+   One visual system across large landscape, medium landscape and portrait:
+   every book sits on the same optical baseline, every cover uses the full
+   artwork, and the cover stage consumes the available space without pushing
+   the section beyond the viewport. */
+#products {
+  --book-print-ratio: 0.7714285714; /* 1080 / 1400 front-cover artwork */
+}
+
+#products .catalog-layout {
+  min-height: 0;
+}
+
+#products .catalog-track {
+  align-items: stretch;
+}
+
+#products .product-slide {
+  min-height: 0;
+}
+
+#products .product-story {
+  height: 100%;
+  min-height: 0;
+  align-items: stretch;
+}
+
+#products .product-cover-real,
+#products .roadmap-visual {
+  width: var(--catalog-cover-width, min(100%, 20rem));
+  aspect-ratio: var(--book-print-ratio) / 1 !important;
+  margin-inline: auto;
+}
+
+#products .product-cover-real {
+  height: auto !important;
+}
+
+#products .product-cover-real .product-cover-frame {
+  width: 100%;
+  height: 100%;
+}
+
+#products .product-cover-real img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+#products .roadmap-visual {
+  height: auto !important;
+}
+
+#products .product-copy {
+  width: var(--catalog-cover-width, min(100%, 20rem));
+  margin-inline: auto;
+}
+
+/* Landscape: the cover size is driven primarily by viewport height. This
+   keeps the books large, perfectly aligned and fully visible at every width. */
+@media (min-width: 720px) and (orientation: landscape) {
+  #products {
+    --catalog-cover-width: min(100%, clamp(14.5rem, 36svh, 22rem));
+    height: calc(100svh - var(--header-height));
+    min-height: calc(100svh - var(--header-height));
+    overflow: hidden;
+    padding-block: clamp(.65rem, 1.55vh, 1.05rem);
+  }
+
+  #products .catalog-layout {
+    width: 100%;
+    height: 100%;
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-content: stretch;
+    justify-content: stretch;
+  }
+
+  #products .catalog-heading-row {
+    align-self: start;
+  }
+
+  #products .catalog-heading-row h2 {
+    font-size: clamp(2.1rem, 4.2vw, 3.8rem);
+  }
+
+  #products .catalog-intro {
+    margin-top: .55rem;
+    font-size: clamp(.86rem, 1.2vw, 1rem);
+    line-height: 1.45;
+  }
+
+  #products .catalog-track {
+    min-height: 0;
+    height: 100%;
+    margin-top: clamp(.6rem, 1.4vh, 1rem);
+    align-items: stretch;
+  }
+
+  #products .product-slide {
+    height: 100%;
+  }
+
+  #products .product-story {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  #products .product-cover-real,
+  #products .roadmap-visual {
+    flex: 0 0 auto;
+  }
+
+  #products .product-copy {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-top: clamp(.55rem, 1.2vh, .9rem);
+  }
+
+  #products .product-copy h3 {
+    margin-top: clamp(.45rem, .9vh, .7rem);
+    font-size: clamp(1.12rem, 1.55vw, 1.45rem);
+  }
+
+  #products .product-copy p {
+    margin-top: .35rem;
+    font-size: clamp(.76rem, .92vw, .88rem);
+    line-height: 1.38;
+  }
+
+  #products .product-copy > div:last-child {
+    padding-top: clamp(.45rem, 1vh, .7rem);
+  }
+}
+
+/* Short landscape windows sacrifice copy density, never the full cover. */
+@media (min-width: 720px) and (orientation: landscape) and (max-height: 720px) {
+  #products {
+    --catalog-cover-width: min(100%, clamp(11rem, 34svh, 15.25rem));
+  }
+
+  #products .catalog-heading-row h2 {
+    margin-top: .35rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.65rem);
+  }
+
+  #products .catalog-intro {
+    margin-top: .35rem;
+    font-size: .78rem;
+  }
+
+  #products .product-copy {
+    padding-top: .5rem;
+  }
+
+  #products .product-copy .chip {
+    min-height: 1.35rem;
+    padding: .18rem .45rem;
+    font-size: .59rem;
+  }
+
+  #products .product-copy h3 {
+    margin-top: .35rem;
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+  }
+
+  #products .product-description {
+    display: none;
+  }
+
+  #products .product-copy > div:last-child {
+    padding-top: .4rem;
+  }
+}
+
+/* Portrait: the entire Books section is exactly one available viewport.
+   The track becomes a full-height gallery lane; each swipe reveals exactly
+   one complete product. The cover stage flexes to consume all remaining
+   vertical room, making the artwork as large as the device allows. */
+@media (max-width: 719px) and (orientation: portrait) {
+  #products {
+    height: calc(100svh - var(--header-height));
+    min-height: calc(100svh - var(--header-height));
+    overflow: hidden;
+    padding-block: .65rem;
+  }
+
+  #products .catalog-layout {
+    width: 100%;
+    height: 100%;
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-content: stretch;
+    justify-content: stretch;
+  }
+
+  #products .catalog-heading-row {
+    align-items: flex-start;
+  }
+
+  #products .catalog-heading-row h2 {
+    margin-top: .45rem;
+    font-size: clamp(1.85rem, 8.6vw, 2.55rem);
+    line-height: .96;
+  }
+
+  #products .catalog-intro {
+    margin-top: .42rem;
+    max-width: 34rem;
+    font-size: clamp(.76rem, 3.4vw, .9rem);
+    line-height: 1.35;
+  }
+
+  #products .catalog-track {
+    min-height: 0;
+    height: 100%;
+    margin-top: .65rem;
+    gap: 1rem;
+    padding: 0;
+    align-items: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  #products .product-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  #products .product-story {
+    display: grid !important;
+    grid-template-rows: minmax(0, 1fr) auto;
+    height: 100%;
+    min-height: 0;
+  }
+
+  #products .product-cover-real,
+  #products .roadmap-visual {
+    align-self: stretch;
+    justify-self: center;
+    height: 100% !important;
+    width: auto !important;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: var(--book-print-ratio) / 1 !important;
+  }
+
+  #products .product-cover-real .product-cover-frame {
+    height: 100%;
+    width: 100%;
+  }
+
+  #products .product-copy {
+    width: 100%;
+    max-width: 31rem;
+    margin-inline: auto;
+    padding: .7rem .15rem 0;
+  }
+
+  #products .product-copy .chip {
+    min-height: 1.45rem;
+    padding: .24rem .5rem;
+    font-size: .62rem;
+  }
+
+  #products .product-copy h3 {
+    margin-top: .5rem;
+    font-size: clamp(1.15rem, 5vw, 1.42rem);
+    line-height: 1.02;
+  }
+
+  #products .product-description {
+    margin-top: .28rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: .75rem;
+    line-height: 1.3;
+  }
+
+  #products .product-copy > div:last-child {
+    padding-top: .55rem;
+  }
+
+  #products .btn-primary,
+  #products .coming-soon-state {
+    min-height: 2.45rem;
+  }
+}
+
+/* Very short portrait devices keep the book visually dominant by trimming
+   non-essential explanatory copy. */
+@media (max-width: 719px) and (orientation: portrait) and (max-height: 700px) {
+  #products .catalog-heading-row .eyebrow,
+  #products .catalog-intro,
+  #products .product-description {
+    display: none;
+  }
+
+  #products .catalog-heading-row h2 {
+    margin-top: 0;
+    font-size: clamp(1.65rem, 7.8vw, 2.15rem);
+  }
+
+  #products .catalog-track {
+    margin-top: .45rem;
+  }
+
+  #products .product-copy {
+    padding-top: .5rem;
+  }
+
+  #products .product-copy h3 {
+    margin-top: .38rem;
+    font-size: 1.05rem;
+  }
+
+  #products .product-copy > div:last-child {
+    padding-top: .4rem;
+  }
+}
+
+/* V21 — precise anchored viewport + maximum landscape cover size ----------
+   Navigation targets always land below the sticky header. The landscape book
+   gallery now uses the same remaining-space algorithm as portrait: the cover
+   consumes all available card height first and the compact product copy sits
+   below it. This keeps the section inside one viewport while making the books
+   substantially larger and visually aligned. */
+html {
+  scroll-padding-top: calc(var(--header-height) + .35rem);
+}
+
+#products,
+#opinions,
+#contact,
+#footer {
+  scroll-margin-top: calc(var(--header-height) + .35rem);
+}
+
+@media (min-width: 720px) and (orientation: landscape) {
+  #products {
+    height: calc(100svh - var(--header-height));
+    min-height: calc(100svh - var(--header-height));
+    padding-block: clamp(.55rem, 1.2vh, .9rem);
+    overflow: hidden;
+  }
+
+  #products .catalog-layout {
+    height: 100%;
+    min-height: 0;
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  #products .catalog-heading-row {
+    min-height: 0;
+  }
+
+  #products .catalog-heading-row h2 {
+    margin-top: .35rem;
+    font-size: clamp(2rem, 3.8vw, 3.55rem);
+    line-height: .96;
+  }
+
+  #products .catalog-intro {
+    margin-top: .4rem;
+    font-size: clamp(.8rem, 1vw, .94rem);
+    line-height: 1.35;
+  }
+
+  #products .catalog-track {
+    height: 100%;
+    min-height: 0;
+    margin-top: clamp(.45rem, 1vh, .7rem);
+    padding-bottom: clamp(.35rem, .8vh, .65rem);
+    align-items: stretch;
+  }
+
+  #products .product-slide {
+    height: 100%;
+    min-height: 0;
+  }
+
+  #products .product-story {
+    height: 100%;
+    min-height: 0;
+    display: grid !important;
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-items: stretch;
+  }
+
+  #products .product-cover-real,
+  #products .roadmap-visual {
+    align-self: stretch;
+    justify-self: center;
+    width: auto !important;
+    height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: var(--book-print-ratio) / 1 !important;
+  }
+
+  #products .product-cover-real .product-cover-frame {
+    width: 100%;
+    height: 100%;
+  }
+
+  #products .product-copy {
+    width: 100%;
+    max-width: 26rem;
+    min-height: 0;
+    margin-inline: auto;
+    padding: clamp(.45rem, .85vh, .65rem) .15rem 0;
+  }
+
+  #products .product-copy .chip {
+    min-height: 1.45rem;
+    padding: .22rem .48rem;
+    font-size: .62rem;
+  }
+
+  #products .product-copy h3 {
+    margin-top: .38rem;
+    font-size: clamp(1.02rem, 1.3vw, 1.26rem);
+    line-height: 1;
+  }
+
+  #products .product-description {
+    margin-top: .25rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: clamp(.7rem, .82vw, .78rem);
+    line-height: 1.28;
+  }
+
+  #products .product-copy > div:last-child {
+    padding-top: .42rem;
+  }
+
+  #products .btn-primary,
+  #products .coming-soon-state {
+    min-height: 2.35rem;
+  }
+}
+
+@media (min-width: 1200px) and (orientation: landscape) and (min-height: 760px) {
+  #products .catalog-heading-row h2 {
+    font-size: clamp(2.25rem, 3.65vw, 3.8rem);
+  }
+
+  #products .product-copy {
+    max-width: 29rem;
+  }
+}
+
+@media (min-width: 720px) and (orientation: landscape) and (max-height: 680px) {
+  #products .catalog-heading-row .eyebrow,
+  #products .catalog-intro,
+  #products .product-description {
+    display: none;
+  }
+
+  #products .catalog-heading-row h2 {
+    margin-top: 0;
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+  }
+
+  #products .catalog-track {
+    margin-top: .35rem;
+  }
+
+  #products .product-copy {
+    padding-top: .35rem;
+  }
+
+  #products .product-copy h3 {
+    margin-top: .3rem;
+    font-size: .98rem;
+  }
+
+  #products .product-copy > div:last-child {
+    padding-top: .3rem;
+  }
+}
+
+/* V25 — homogeneous viewport sections with natural vertical scrolling -------
+   Keep each home section sized to one visual viewport below the existing
+   header, but do not force or snap the user between sections. */
+:root {
+  --section-viewport-height: calc(100svh - var(--header-height));
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --section-viewport-height: calc(100dvh - var(--header-height));
+  }
+}
+
+/* Use one offset model only. V21 previously had both scroll-padding and
+   scroll-margin, which could visually double the header offset. Vertical
+   scrolling remains completely native: no automatic section snapping. */
+html:has(#main-content > .viewport-section) {
+  scroll-padding-top: var(--header-height);
+}
+
+html:has(#main-content > .viewport-section) #products,
+html:has(#main-content > .viewport-section) #opinions,
+html:has(#main-content > .viewport-section) #contact,
+html:has(#main-content > .viewport-section) #footer {
+  scroll-margin-top: 0 !important;
+}
+
+html:has(#main-content > .viewport-section) #main-content > .viewport-section,
+html:has(#main-content > .viewport-section) .footer-viewport {
+  box-sizing: border-box;
+  height: var(--section-viewport-height);
+  min-height: var(--section-viewport-height);
+  max-height: var(--section-viewport-height);
+  overflow: hidden;
+}
+
+/* HERO: preserve the original header and hero proportions, but constrain the
+   visual surface to the section so the next section can never peek in. */
+html:has(#main-content > .viewport-section) #main-content > .viewport-section:first-child {
+  align-items: stretch;
+}
+
+html:has(#main-content > .viewport-section) #main-content > .viewport-section:first-child .hero-card {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+html:has(#main-content > .viewport-section) #main-content > .viewport-section:first-child .hero-layout {
+  height: 100%;
+  min-height: 0;
+}
+
+/* BOOKS: V21 already has the correct cover-first responsive treatment. This
+   only guarantees the outer page is exactly one viewport and the grid uses
+   every pixel inside it without changing the header. */
+html:has(#main-content > .viewport-section) #products .catalog-layout {
+  height: 100%;
+  min-height: 0;
+}
+
+/* OPINIONS: convert the section into heading + flexible media lane so the
+   complete section stays inside one visual page at every breakpoint. */
+html:has(#main-content > .viewport-section) #opinions {
+  align-items: stretch;
+  padding-block: clamp(.65rem, 1.8vh, 1.3rem);
+}
+
+html:has(#main-content > .viewport-section) #opinions > .section-shell {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: stretch;
+}
+
+html:has(#main-content > .viewport-section) #opinions .testimonials-track {
+  min-height: 0;
+  height: 100%;
+  margin-top: clamp(.6rem, 1.5vh, 1rem);
+  align-items: stretch;
+}
+
+html:has(#main-content > .viewport-section) #opinions .testimonial-slide,
+html:has(#main-content > .viewport-section) #opinions .testimonial-story,
+html:has(#main-content > .viewport-section) #opinions .testimonial-card-grid {
+  min-height: 0;
+  height: 100%;
+}
+
+/* CONTACT: its glass surface owns the complete content box. */
+html:has(#main-content > .viewport-section) #contact {
+  align-items: stretch;
+}
+
+html:has(#main-content > .viewport-section) #contact > .glass-surface {
+  height: 100%;
+  min-height: 0 !important;
+  align-items: center;
+}
+
+/* FOOTER: one page as well. On unusually short devices the footer content may
+   scroll internally rather than exposing the neighbouring Contact section. */
+html:has(#main-content > .viewport-section) .footer-viewport {
+  align-items: stretch;
+  overflow-y: auto;
+  /* Natural page scrolling is preserved in both directions. */
+  overscroll-behavior-y: auto;
+}
+
+html:has(#main-content > .viewport-section) .footer-viewport > .section-shell {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+html:has(#main-content > .viewport-section) .footer-frame {
+  width: 100%;
+}
+
+/* Landscape: let the media areas grow into the page while compacting only
+   secondary text. */
+@media (min-width: 720px) and (orientation: landscape) {
+  html:has(#main-content > .viewport-section) #opinions .testimonial-card-grid {
+    overflow: hidden;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-video {
+    min-height: 0 !important;
+  }
+}
+
+@media (min-width: 1200px) and (orientation: landscape) {
+  html:has(#main-content > .viewport-section) #opinions .testimonial-card-grid {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-video {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-copy {
+    flex: none;
+    padding-top: clamp(.5rem, .9vh, .75rem);
+    padding-bottom: 0;
+  }
+}
+
+/* Portrait: one complete horizontal item at a time inside one complete
+   vertical section. No second page is visible above or below. */
+@media (max-width: 719px) and (orientation: portrait) {
+  html:has(#main-content > .viewport-section) #opinions {
+    padding-block: .65rem;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    scroll-snap-stop: always;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-card-grid {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-video {
+    min-height: 0;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-copy {
+    flex: none;
+    padding: .65rem .15rem 0;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-copy blockquote {
+    margin-top: .5rem;
+    font-size: clamp(1rem, 4.6vw, 1.35rem);
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-copy p:last-child {
+    margin-top: .45rem;
+  }
+
+  html:has(#main-content > .viewport-section) #contact > .glass-surface {
+    padding-block: clamp(1.25rem, 4vh, 2.2rem);
+  }
+}
+
+/* Short windows: preserve the full section first; trim secondary copy before
+   any primary visual is forced outside the viewport. */
+@media (max-height: 680px) {
+  html:has(#main-content > .viewport-section) #opinions .max-w-xl,
+  html:has(#main-content > .viewport-section) #contact .pretty-wrap,
+  html:has(#main-content > .viewport-section) #contact .mt-4.text-xs {
+    display: none;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions h2 {
+    margin-top: .3rem;
+    font-size: clamp(1.75rem, 5vw, 2.55rem);
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonials-track {
+    margin-top: .45rem;
+  }
+
+  html:has(#main-content > .viewport-section) #contact h2 {
+    margin-top: .45rem;
+    font-size: clamp(2.2rem, 7vw, 4.2rem);
+  }
+
+  html:has(#main-content > .viewport-section) #contact .mt-8 {
+    margin-top: 1rem;
+  }
+}
+
+
+/* V24 — product cover links + bidirectional section scrolling. */
+#products .product-cover-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+#products .product-cover-link:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-brand-terracotta) 58%, transparent);
+  outline-offset: 4px;
+}
+
+/* V26 — unavailable editions are unmistakably in-progress and fully non-interactive. */
+#products .product-unavailable {
+  cursor: default;
+}
+
+#products .product-unavailable .product-cover-real {
+  cursor: default;
+  filter: saturate(.52) contrast(.96);
+  opacity: .82;
+  box-shadow: 0 16px 40px rgba(56, 37, 27, .08);
+}
+
+#products .product-unavailable .product-cover-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(248, 246, 242, .08), rgba(226, 222, 216, .22));
+}
+
+#products .product-unavailable .product-cover-frame::after {
+  display: none !important;
+}
+
+#products .product-unavailable:hover .product-cover-real,
+#products .product-unavailable:focus-within .product-cover-real {
+  transform: none !important;
+  filter: saturate(.52) contrast(.96);
+}
+
+#products .product-unavailable .coming-soon-state {
+  width: 100%;
+  min-height: 48px;
+  justify-content: center;
+  border: 1px solid rgba(56, 37, 27, .12);
+  background: linear-gradient(180deg, rgba(246, 243, 238, .96), rgba(235, 231, 225, .92));
+  color: color-mix(in srgb, var(--color-brand-brown) 68%, white);
+  box-shadow: none;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+#products .product-unavailable .coming-soon-dot {
+  background: color-mix(in srgb, var(--color-brand-terracotta) 52%, #a8a29e);
+  box-shadow: 0 0 0 5px rgba(168, 162, 158, .12);
+}
+
+#products .product-unavailable .coming-soon-state strong {
+  color: color-mix(in srgb, var(--color-brand-brown) 72%, white);
+}
+
+#products .product-unavailable .coming-soon-state small {
+  color: color-mix(in srgb, var(--color-brand-muted) 78%, white);
+}
+
+.hero-book-unavailable {
+  cursor: default !important;
+  filter: saturate(.55) contrast(.97);
+  opacity: .84;
+}
+
+.hero-book-unavailable:hover,
+.hero-book-unavailable:focus-within {
+  transform: inherit;
+  filter: saturate(.55) contrast(.97);
+}
+
+.hero-book-unavailable .hero-book-cover::after {
+  display: none !important;
+}
+
+/* Hard-disable unavailable cover interactions without affecting horizontal swipe. */
+#products .product-unavailable .product-cover-real,
+#products .product-unavailable .coming-soon-state,
+.hero-book-unavailable {
+  pointer-events: none;
+}
+
+/* V28 — three-book launch collection --------------------------------------
+   Farm, Halloween and Christmas share one balanced hero composition. The
+   underlying responsive system stays unchanged; this only expands the fan
+   from two covers to three while preserving full, uncropped artwork. */
+.hero-book-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(.5rem, 1.45vw, .95rem);
+  align-items: center;
+}
+
+.hero-book-center {
+  z-index: 2;
+}
+
+.hero-book-center:hover,
+.hero-book-center:focus-visible {
+  transform: translateY(-1.05rem) rotate(0deg) scale(1.05);
+}
+
+@media (max-width: 719px) and (orientation: portrait) {
+  .hero-books-stage {
+    width: min(100%, 23rem);
+  }
+
+  .hero-book-grid {
+    gap: clamp(.35rem, 2vw, .62rem);
+  }
+
+  .hero-book-card {
+    border-radius: 1.18rem;
+    padding: clamp(.3rem, 1.35vw, .48rem);
+  }
+
+  .hero-book-cover {
+    border-radius: .92rem;
+  }
+
+  .hero-book-cover > div:first-of-type,
+  .hero-book-cover .absolute.left-3.top-3 {
+    font-size: .5rem;
+  }
+}
+
+/* V29 — larger three-cover hero + calmer availability ---------------------
+   The three-book launch collection now scales to the actual landscape art
+   area instead of inheriting the old two-book height cap. Unavailable books
+   use one quiet, single-line availability cue below the cover; the muted
+   artwork already communicates the in-progress state without duplicate copy. */
+@media (min-width: 720px) and (orientation: landscape) {
+  .hero-art {
+    padding-inline: clamp(.8rem, 1.8vw, 1.75rem);
+  }
+
+  .hero-books-stage {
+    width: min(100%, 48rem);
+    max-width: none;
+  }
+
+  .hero-book-grid {
+    gap: clamp(.55rem, 1.15vw, .95rem);
+  }
+
+  .hero-book-card {
+    padding: clamp(.4rem, .7vw, .62rem);
+  }
+
+  .hero-book-cover {
+    border-radius: clamp(1rem, 1.25vw, 1.4rem);
+  }
+}
+
+@media (min-width: 1200px) and (orientation: landscape) {
+  .hero-layout {
+    grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr);
+  }
+
+  .hero-art {
+    padding-inline: clamp(1rem, 2vw, 2.1rem);
+  }
+
+  .hero-books-stage {
+    width: min(100%, 52rem);
+  }
+}
+
+@media (min-width: 720px) and (orientation: landscape) and (max-height: 760px) {
+  .hero-books-stage {
+    width: min(100%, 44rem);
+    max-width: none;
+  }
+}
+
+#products .product-unavailable .coming-soon-state {
+  width: fit-content;
+  min-width: 0;
+  min-height: 2.35rem;
+  justify-content: flex-start;
+  gap: .55rem;
+  padding: .55rem .82rem;
+  border: 1px solid rgba(56, 37, 27, .1);
+  border-radius: 999px;
+  background: rgba(239, 236, 231, .78);
+  color: color-mix(in srgb, var(--color-brand-brown) 66%, white);
+  box-shadow: none;
+  cursor: default;
+}
+
+#products .product-unavailable .coming-soon-dot {
+  width: .46rem;
+  height: .46rem;
+  flex: 0 0 .46rem;
+  background: color-mix(in srgb, var(--color-brand-terracotta) 46%, #a8a29e);
+  box-shadow: none;
+}
+
+#products .product-unavailable .coming-soon-state strong {
+  color: inherit;
+  font-size: .75rem;
+  font-weight: 850;
+  letter-spacing: .015em;
+}
+
+#products .product-unavailable .coming-soon-state small {
+  display: none !important;
+}
+
+@media (max-width: 719px) and (orientation: portrait) {
+  #products .product-unavailable .coming-soon-state {
+    min-height: 2.2rem;
+    padding: .48rem .72rem;
+  }
+}
+
+/* V34 — minimal fluid responsive system ---------------------------------------
+   One geometry model for Hero + Books. The goal is stability rather than
+   device-specific choreography: artwork scales continuously, copy stays short,
+   and only one compact portrait swipe rail remains where three large books
+   physically cannot fit side-by-side. */
+
+/* Keep these two showcase sections inside the space below the sticky header. */
+.section-tone-hero,
+#products {
+  height: calc(100svh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   HERO — static cards, no carousel UI
+   -------------------------------------------------------------------------- */
+.section-tone-hero {
+  padding-block: clamp(.65rem, 1.45svh, 1.1rem);
+}
+
+.section-tone-hero .hero-card {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border-radius: clamp(1.35rem, 2.4vw, 2.25rem);
+}
+
+.section-tone-hero .hero-layout {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, .68fr) minmax(0, 1.32fr);
+}
+
+.section-tone-hero .hero-copy,
+.section-tone-hero .hero-art {
+  min-width: 0;
+  min-height: 0;
+}
+
+.section-tone-hero .hero-copy {
+  padding: clamp(1.35rem, 3.5vw, 3.6rem);
+}
+
+.section-tone-hero .hero-copy-inner {
+  width: min(100%, 35rem);
+}
+
+.section-tone-hero .hero-copy h1 {
+  margin-top: clamp(.65rem, 1.35vh, 1rem) !important;
+  font-size: clamp(2.35rem, 5vw, 5.25rem) !important;
+  line-height: .94 !important;
+}
+
+.section-tone-hero .hero-copy p {
+  margin-top: clamp(.65rem, 1.3vh, 1rem) !important;
+  max-width: 31rem;
+  font-size: clamp(.92rem, 1.15vw, 1.08rem) !important;
+  line-height: 1.5 !important;
+}
+
+.section-tone-hero .hero-copy .mt-7 {
+  margin-top: clamp(.85rem, 1.8vh, 1.35rem) !important;
+}
+
+.section-tone-hero .hero-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(.8rem, 2vw, 2rem);
+  overflow: hidden;
+}
+
+.hero-static-gallery {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 66rem);
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: clamp(.65rem, 1.5vw, 1.4rem);
+}
+
+.hero-static-book,
+.hero-static-book + .hero-static-book {
+  position: relative;
+  width: min(100%, calc(64svh * .7714285714), 21rem);
+  min-width: 0;
+  margin: 0;
+  padding: clamp(.22rem, .45vw, .4rem);
+  border-radius: clamp(1rem, 1.6vw, 1.4rem);
+  background: rgba(255,255,255,.84);
+  box-shadow: 0 20px 48px rgba(56,37,27,.11);
+  transform: none;
+  transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, opacity .25s ease, filter .25s ease;
+}
+
+.hero-static-book .hero-book-cover {
+  width: 100%;
+  border-radius: clamp(.82rem, 1.2vw, 1.15rem);
+}
+
+.hero-static-book.hero-book-interactive:hover,
+.hero-static-book.hero-book-interactive:focus-visible {
+  z-index: 4;
+  transform: translateY(-.45rem) scale(1.025);
+  box-shadow: 0 28px 66px rgba(56,37,27,.16);
+  outline: none;
+}
+
+.hero-static-book.hero-book-unavailable {
+  opacity: .66;
+  filter: grayscale(.08) saturate(.62) contrast(.98);
+}
+
+.hero-static-status {
+  position: absolute;
+  right: .42rem;
+  bottom: .42rem;
+  z-index: 4;
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 999px;
+  background: rgba(56,37,27,.7);
+  padding: .31rem .46rem;
+  color: #fff;
+  font-size: clamp(.48rem, .62vw, .62rem);
+  font-weight: 850;
+  line-height: 1;
+  backdrop-filter: blur(10px);
+}
+
+/* --------------------------------------------------------------------------
+   BOOKS — cover first, almost no chrome
+   -------------------------------------------------------------------------- */
+#products {
+  padding-block: clamp(.6rem, 1.25svh, 1rem);
+}
+
+#products .catalog-simple-layout {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(.45rem, 1svh, .8rem);
+}
+
+#products .catalog-simple-heading {
+  text-align: center;
+}
+
+#products .catalog-simple-heading .eyebrow,
+#products .catalog-simple-intro {
+  display: none;
+}
+
+#products .catalog-simple-heading h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.4vw, 3.15rem);
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+
+#products .catalog-simple-track {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: clamp(.7rem, 1.45vw, 1.3rem);
+  align-items: stretch;
+  scrollbar-width: none;
+}
+
+#products .catalog-simple-track::-webkit-scrollbar {
+  display: none;
+}
+
+#products .catalog-simple-slide {
+  min-width: 0;
+  min-height: 0;
+}
+
+#products .catalog-simple-card {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: stretch;
+  justify-items: center;
+}
+
+#products .catalog-simple-card .product-cover-real {
+  align-self: center;
+  justify-self: center;
+  width: min(100%, 20.5rem, 26vw, calc(55svh * .7714285714)) !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: .7714285714 / 1 !important;
+  margin: 0;
+  padding: clamp(.24rem, .42vw, .38rem);
+  border-radius: clamp(1rem, 1.5vw, 1.35rem);
+}
+
+#products .catalog-simple-card .product-cover-frame {
+  height: auto;
+  aspect-ratio: .7714285714 / 1;
+  border-radius: clamp(.8rem, 1.15vw, 1.08rem);
+}
+
+#products .catalog-simple-card .product-cover-real img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* The printed cover already carries the brand/theme — extra badges only add noise. */
+#products .product-cover-badge {
+  display: none !important;
+}
+
+#products .catalog-simple-copy {
+  width: min(100%, 21rem);
+  padding: clamp(.38rem, .75svh, .58rem) .15rem 0;
+  text-align: center;
+}
+
+#products .catalog-simple-age {
+  display: block;
+  color: var(--color-brand-muted);
+  font-size: clamp(.61rem, .72vw, .7rem);
+  font-weight: 800;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+#products .catalog-simple-title {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: .18rem;
+  font-size: clamp(.98rem, 1.25vw, 1.22rem);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#products .catalog-simple-action {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(.32rem, .62svh, .5rem);
+}
+
+#products .catalog-simple-action .btn-primary {
+  min-height: 2.2rem;
+  width: auto;
+  padding: .52rem .78rem;
+  border-radius: 999px;
+  font-size: .74rem;
+}
+
+#products .catalog-simple-soon {
+  min-height: 0 !important;
+  width: fit-content;
+  padding: .45rem .68rem !important;
+  border: 0 !important;
+  border-radius: 999px;
+  background: rgba(56,37,27,.055) !important;
+  color: color-mix(in srgb, var(--color-brand-brown) 56%, white) !important;
+  box-shadow: none !important;
+  font-size: .7rem;
+}
+
+#products .product-unavailable .product-cover-real {
+  opacity: .6;
+  filter: grayscale(.12) saturate(.55) contrast(.97);
+}
+
+#products .catalog-simple-dots {
+  min-height: .55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .42rem;
+}
+
+#products .catalog-simple-dots button {
+  width: .4rem;
+  height: .4rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  background: color-mix(in srgb, var(--color-brand-brown) 16%, transparent);
+  cursor: pointer;
+  transition: width .2s ease, background .2s ease;
+}
+
+#products .catalog-simple-dots button.is-active {
+  width: 1rem;
+  background: var(--color-brand-terracotta);
+}
+
+/* Landscape: all three books fit at once. This rule is deliberately broad so
+   resizing between laptop and desktop widths does not trigger layout jumps. */
+@media (min-width: 760px) and (orientation: landscape) {
+  #products .catalog-simple-layout {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  #products .catalog-simple-track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  #products .catalog-simple-slide {
+    width: auto;
+    height: 100%;
+    flex: none;
+  }
+
+  #products .catalog-simple-dots {
+    display: none;
+  }
+}
+
+/* Portrait / narrow screens: one complete book at a time. The sizing is driven
+   by both width and viewport height, so no separate phone-model breakpoints are
+   needed and the full cover remains visible while resizing. */
+@media (max-width: 759px), (orientation: portrait) and (max-width: 900px) {
+  #products .catalog-simple-layout {
+    gap: clamp(.38rem, .8svh, .6rem);
+  }
+
+  #products .catalog-simple-heading h2 {
+    font-size: clamp(1.55rem, 7.4vw, 2.15rem);
+  }
+
+  #products .catalog-simple-track {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-inline: contain;
+  }
+
+  #products .catalog-simple-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  #products .catalog-simple-card .product-cover-real {
+    width: min(92vw, calc(58svh * .7714285714), 23rem) !important;
+    max-width: 100%;
+  }
+
+  #products .catalog-simple-copy {
+    padding-top: clamp(.3rem, .6svh, .48rem);
+  }
+
+  #products .catalog-simple-title {
+    font-size: clamp(1rem, 4.7vw, 1.25rem);
+  }
+
+  #products .catalog-simple-action {
+    margin-top: .32rem;
+  }
+}
+
+/* Compact-height safety: remove only nonessential copy. Artwork still scales
+   continuously and the section never switches to a different interaction. */
+@media (max-height: 640px) {
+  .section-tone-hero .hero-copy p {
+    display: none;
+  }
+
+  .section-tone-hero .hero-copy .mt-7 {
+    margin-top: .7rem !important;
+  }
+
+  #products .catalog-simple-age {
+    display: none;
+  }
+
+  #products .catalog-simple-title {
+    margin-top: 0;
+  }
+}
+
+/* Portrait hero uses a stable two-row card wall instead of shrinking three
+   covers into one tiny line or introducing carousel controls. */
+@media (orientation: portrait), (max-width: 759px) {
+  .section-tone-hero .hero-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .section-tone-hero .hero-copy {
+    padding: clamp(.9rem, 4vw, 1.25rem) 1.05rem .25rem;
+  }
+
+  .section-tone-hero .hero-copy-inner {
+    width: 100%;
+    text-align: left;
+  }
+
+  .section-tone-hero .hero-copy .eyebrow {
+    font-size: .62rem;
+  }
+
+  .section-tone-hero .hero-copy h1 {
+    margin-top: .5rem !important;
+    font-size: clamp(2rem, 9.4vw, 2.85rem) !important;
+  }
+
+  .section-tone-hero .hero-copy p {
+    margin-top: .5rem !important;
+    max-width: 31rem;
+    font-size: .86rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .section-tone-hero .hero-copy .mt-7 {
+    margin-top: .7rem !important;
+  }
+
+  .section-tone-hero .hero-art {
+    padding: .25rem .75rem .7rem;
+  }
+
+  .hero-static-gallery {
+    width: min(100%, 31rem);
+    height: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: clamp(.45rem, 2vw, .75rem);
+  }
+
+  .hero-static-book,
+  .hero-static-book + .hero-static-book {
+    width: min(42vw, calc(26svh * .7714285714), 11.5rem);
+    align-self: center;
+  }
+
+  .hero-static-book-3 {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}
+
+@media (orientation: portrait) and (max-height: 720px) {
+  .section-tone-hero .hero-copy p {
+    display: none;
+  }
+
+  .section-tone-hero .hero-copy .eyebrow {
+    display: none;
+  }
+
+  .hero-static-book,
+  .hero-static-book + .hero-static-book {
+    width: min(41vw, calc(26svh * .7714285714), 10.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-static-book {
+    transition: none;
+  }
+}
+
+
+/* V35 — centered, minimal, resilient showcase --------------------------------
+   This final layer intentionally resets the accumulated showcase rules from
+   earlier iterations. Hero and Books now use one centered geometry system,
+   full-cover artwork, and only the minimum UI needed to understand each book. */
+:root {
+  --v35-content-max: 1480px;
+  --v35-book-ratio: .7714285714;
+}
+
+/* One visual axis across header, hero, books, contact and footer. */
+.section-shell {
+  width: calc(100% - (var(--shell-gutter) * 2));
+  max-width: var(--v35-content-max);
+  margin-inline: auto;
+}
+
+/* ------------------------------ HERO ------------------------------------- */
+.section-tone-hero {
+  align-items: stretch;
+  padding-block: clamp(.7rem, 1.4svh, 1rem);
+}
+
+.section-tone-hero .hero-card {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.section-tone-hero .hero-layout {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(17rem, .7fr) minmax(0, 1.3fr);
+  align-items: stretch;
+}
+
+.section-tone-hero .hero-copy,
+.section-tone-hero .hero-art {
+  min-width: 0;
+  min-height: 0;
+}
+
+.section-tone-hero .hero-copy {
+  display: flex;
+  align-items: center;
+  padding: clamp(1.4rem, 3.2vw, 3.4rem);
+}
+
+.section-tone-hero .hero-copy-inner {
+  width: min(100%, 34rem);
+  margin-inline: auto;
+}
+
+.section-tone-hero .hero-copy h1 {
+  font-size: clamp(2.55rem, 4.8vw, 5.1rem) !important;
+  line-height: .94 !important;
+}
+
+.section-tone-hero .hero-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(.85rem, 2vw, 1.8rem);
+}
+
+.hero-static-gallery {
+  width: min(100%, 54rem);
+  height: 100%;
+  min-height: 0;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: clamp(.65rem, 1.2vw, 1.1rem);
+}
+
+.hero-static-book,
+.hero-static-book + .hero-static-book {
+  position: relative;
+  display: block;
+  width: min(100%, 17rem);
+  min-width: 0;
+  margin: 0;
+  padding: clamp(.25rem, .35vw, .34rem);
+  border: 1px solid rgba(255,255,255,.78);
+  border-radius: clamp(1rem, 1.4vw, 1.3rem);
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 18px 42px rgba(56,37,27,.11);
+  transform: none;
+}
+
+.hero-static-book .hero-book-cover {
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--v35-book-ratio) / 1;
+  overflow: hidden;
+  border-radius: clamp(.8rem, 1vw, 1rem);
+  background: #fff;
+}
+
+.hero-static-book .hero-book-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-static-book.hero-book-interactive:hover,
+.hero-static-book.hero-book-interactive:focus-visible {
+  transform: translateY(-.38rem) scale(1.018);
+}
+
+.hero-static-book.hero-book-unavailable {
+  opacity: .64;
+  filter: grayscale(.1) saturate(.62);
+}
+
+.hero-static-status {
+  right: .5rem;
+  bottom: .5rem;
+  top: auto;
+  padding: .34rem .5rem;
+  font-size: .58rem;
+  letter-spacing: .02em;
+  text-transform: none;
+}
+
+/* ------------------------------ BOOKS ------------------------------------ */
+#products.section-shell {
+  max-width: var(--v35-content-max);
+  margin-inline: auto;
+  align-items: stretch;
+  padding-block: clamp(.7rem, 1.35svh, 1rem);
+}
+
+#products .catalog-simple-layout {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(.5rem, 1svh, .8rem);
+}
+
+#products .catalog-simple-heading {
+  width: 100%;
+  margin-inline: auto;
+  text-align: center;
+}
+
+#products .catalog-simple-heading .eyebrow,
+#products .catalog-simple-intro {
+  display: none !important;
+}
+
+#products .catalog-simple-heading h2 {
+  margin: 0;
+  font-size: clamp(1.85rem, 3vw, 2.85rem);
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+
+#products .catalog-simple-track {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: stretch;
+  gap: clamp(1rem, 2vw, 2rem);
+  scrollbar-width: none;
+}
+
+#products .catalog-simple-track::-webkit-scrollbar { display: none; }
+
+#products .catalog-simple-slide {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#products .catalog-simple-card {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: stretch;
+  justify-items: center;
+}
+
+/* Remove the old decorative wrapper. The real printed cover is the design. */
+#products .catalog-simple-card .product-cover-real {
+  align-self: center;
+  justify-self: center;
+  width: min(100%, 22rem, 24vw, 44svh) !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: var(--v35-book-ratio) / 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#products .catalog-simple-card .product-cover-frame {
+  width: 100%;
+  height: 100% !important;
+  aspect-ratio: var(--v35-book-ratio) / 1 !important;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.88) !important;
+  border-radius: clamp(.85rem, 1.1vw, 1.08rem) !important;
+  background: #fff !important;
+  box-shadow: 0 18px 42px rgba(56,37,27,.12) !important;
+}
+
+#products .catalog-simple-card .product-cover-real img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+#products .product-cover-badge,
+#products .product-cover-real > .absolute.inset-0,
+#products .product-cover-frame > .pointer-events-none {
+  display: none !important;
+}
+
+#products .catalog-simple-copy {
+  width: min(100%, 22rem);
+  padding: clamp(.45rem, .8svh, .62rem) .2rem 0;
+  text-align: center;
+}
+
+#products .catalog-simple-age {
+  display: block;
+  margin: 0;
+  color: var(--color-brand-muted);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+#products .catalog-simple-title {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: .2rem 0 0;
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#products .catalog-simple-action {
+  display: flex;
+  justify-content: center;
+  margin-top: .42rem;
+}
+
+#products .catalog-simple-action .btn-primary {
+  width: auto;
+  min-height: 2.25rem;
+  padding: .52rem .82rem;
+  font-size: .74rem;
+}
+
+#products .catalog-simple-soon {
+  width: auto !important;
+  min-height: 2.1rem !important;
+  padding: .5rem .72rem !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(56,37,27,.055) !important;
+  color: color-mix(in srgb, var(--color-brand-brown) 58%, white) !important;
+  box-shadow: none !important;
+  cursor: default !important;
+}
+
+#products .catalog-simple-soon strong {
+  font-size: .7rem !important;
+  font-weight: 800 !important;
+}
+
+#products .product-unavailable .product-cover-real {
+  opacity: .64 !important;
+  filter: grayscale(.12) saturate(.54) contrast(.98) !important;
+}
+
+#products .product-unavailable .product-cover-frame::before {
+  background: rgba(248,246,242,.1) !important;
+}
+
+#products .catalog-simple-dots {
+  min-height: .5rem;
+  margin: 0;
+}
+
+/* Three clean columns whenever a three-column layout has enough real width. */
+@media (min-width: 760px) and (orientation: landscape) {
+  #products .catalog-simple-layout {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  #products .catalog-simple-track {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+  }
+
+  #products .catalog-simple-slide {
+    width: auto !important;
+    height: 100%;
+    flex: none !important;
+  }
+
+  #products .catalog-simple-dots { display: none !important; }
+}
+
+/* Compact landscape keeps exactly the same composition; only scale changes. */
+@media (min-width: 760px) and (orientation: landscape) and (max-width: 1080px) {
+  .section-tone-hero .hero-layout {
+    grid-template-columns: minmax(15rem, .62fr) minmax(0, 1.38fr);
+  }
+
+  .section-tone-hero .hero-copy {
+    padding: clamp(1rem, 2vw, 1.6rem);
+  }
+
+  .section-tone-hero .hero-copy h1 {
+    font-size: clamp(2.15rem, 5vw, 3.35rem) !important;
+  }
+
+  .section-tone-hero .hero-copy p {
+    font-size: .9rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .hero-static-gallery {
+    gap: clamp(.45rem, .8vw, .75rem);
+  }
+
+  .hero-static-book,
+  .hero-static-book + .hero-static-book {
+    width: min(100%, 13.5rem);
+  }
+
+  #products .catalog-simple-card .product-cover-real {
+    width: min(100%, 18rem, 24vw, 42svh) !important;
+  }
+}
+
+/* Portrait: centered hero fan + one large, complete book per horizontal swipe. */
+@media (orientation: portrait), (max-width: 759px) {
+  .section-tone-hero .hero-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .section-tone-hero .hero-copy {
+    padding: clamp(.9rem, 3.6vw, 1.2rem) 1rem .2rem;
+    text-align: center;
+  }
+
+  .section-tone-hero .hero-copy-inner {
+    width: min(100%, 32rem);
+    margin-inline: auto;
+  }
+
+  .section-tone-hero .hero-copy h1 {
+    margin-top: .45rem !important;
+    font-size: clamp(2rem, 9vw, 2.75rem) !important;
+  }
+
+  .section-tone-hero .hero-copy p {
+    margin: .5rem auto 0 !important;
+    max-width: 28rem;
+    font-size: .84rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .section-tone-hero .hero-copy .mt-7 {
+    margin-top: .65rem !important;
+  }
+
+  .section-tone-hero .hero-copy .mt-7,
+  .section-tone-hero .hero-copy .mt-7 > * {
+    justify-content: center;
+  }
+
+  .section-tone-hero .hero-art {
+    padding: .35rem .6rem .75rem;
+  }
+
+  .hero-static-gallery {
+    width: 100%;
+    max-width: 31rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    overflow: visible;
+  }
+
+  .hero-static-book,
+  .hero-static-book + .hero-static-book {
+    width: min(36vw, 10.5rem, 23svh);
+    flex: 0 0 auto;
+  }
+
+  .hero-static-book + .hero-static-book {
+    margin-left: clamp(-2.8rem, -8vw, -1.9rem);
+  }
+
+  .hero-static-book-1 { transform: rotate(-3.5deg) translateY(.35rem); }
+  .hero-static-book-2 { z-index: 2; transform: translateY(-.2rem); }
+  .hero-static-book-3 { transform: rotate(3.5deg) translateY(.35rem); }
+
+  .hero-static-book.hero-book-interactive:hover,
+  .hero-static-book.hero-book-interactive:focus-visible {
+    z-index: 5;
+    transform: translateY(-.35rem) scale(1.025);
+  }
+
+  #products .catalog-simple-layout {
+    gap: clamp(.4rem, .8svh, .62rem);
+  }
+
+  #products .catalog-simple-heading h2 {
+    font-size: clamp(1.65rem, 7vw, 2.15rem);
+  }
+
+  #products .catalog-simple-track {
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    gap: 0 !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-inline: contain;
+  }
+
+  #products .catalog-simple-slide {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  #products .catalog-simple-card .product-cover-real {
+    width: min(80vw, 22rem, 49svh) !important;
+  }
+
+  #products .catalog-simple-copy {
+    width: min(100%, 22rem);
+  }
+}
+
+/* Very short windows sacrifice secondary copy before artwork or alignment. */
+@media (max-height: 640px) {
+  .section-tone-hero .hero-copy p { display: none !important; }
+  .section-tone-hero .hero-copy .mt-7 { margin-top: .55rem !important; }
+  #products .catalog-simple-age { display: none !important; }
+  #products .catalog-simple-copy { padding-top: .3rem; }
+}
+
+@media (max-height: 540px) and (orientation: landscape) {
+  .section-tone-hero .hero-copy .eyebrow { display: none !important; }
+  .section-tone-hero .hero-copy h1 { margin-top: 0 !important; }
+  #products .catalog-simple-heading h2 { font-size: 1.55rem; }
+  #products .catalog-simple-card .product-cover-real {
+    width: min(100%, 15rem, 23vw, 38svh) !important;
+  }
+}
+
+@media (orientation: portrait), (max-width: 759px) {
+  .section-tone-hero .hero-copy .mt-7 {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* V37 — Opinions uses the exact same portrait interaction language as Books:
+   one complete card per swipe with three dots underneath and the active dot
+   highlighted in terracotta. Landscape styling is unchanged. */
+#opinions .opinions-simple-dots {
+  display: none;
+}
+
+@media (max-width: 759px), (orientation: portrait) and (max-width: 900px) {
+  html:has(#main-content > .viewport-section) #opinions > .section-shell {
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonials-track {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 0;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonials-track::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  html:has(#main-content > .viewport-section) #opinions .testimonial-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  #opinions .opinions-simple-dots {
+    min-height: .55rem;
+    margin-top: .35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .42rem;
+  }
+
+  #opinions .opinions-simple-dots button {
+    width: .4rem;
+    height: .4rem;
+    border: 0;
+    border-radius: 999px;
+    padding: 0;
+    background: color-mix(in srgb, var(--color-brand-brown) 16%, transparent);
+    cursor: pointer;
+    transition: width .2s ease, background .2s ease;
+  }
+
+  #opinions .opinions-simple-dots button.is-active {
+    width: 1rem;
+    background: var(--color-brand-terracotta);
+  }
+}

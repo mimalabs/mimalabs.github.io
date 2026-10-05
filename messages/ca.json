@@ -1,0 +1,293 @@
+{
+  "meta": {
+    "title": "MIMA LABS — Llibres creatius per a petites imaginacions",
+    "description": "Llibres creatius per acolorir, imaginar i crear."
+  },
+  "nav": {
+    "products": "Llibres",
+    "reviews": "Opinions",
+    "about": "Sobre nosaltres",
+    "faq": "FAQ",
+    "language": "Idioma",
+    "contact": "Contacte"
+  },
+  "common": {
+    "explore": "Descobreix els llibres",
+    "viewAll": "Veure tots els llibres",
+    "viewAmazon": "Veure a Amazon",
+    "previous": "Anterior",
+    "next": "Següent",
+    "comingSoon": "Properament",
+    "age": "Edat",
+    "rating": "Valoració",
+    "backHome": "Tornar a MIMA LABS",
+    "externalLink": "Obre un lloc extern",
+    "comingSoonEdition": "Aquesta edició en el teu idioma arribarà aviat.",
+    "backToTop": "Torna a dalt"
+  },
+  "hero": {
+    "slide1": {
+      "eyebrow": "Mans petites. Gran imaginació.",
+      "title": "Acoloreix. Imagina. Crea.",
+      "body": "Llibres creatius per a mans petites i grans idees.",
+      "cta": "Descobrir llibres"
+    },
+    "slide2": {
+      "eyebrow": "Una biblioteca que creix",
+      "title": "Més temes. Més maneres de crear.",
+      "body": "Granja, Halloween i Nadal són només el començament.",
+      "cta": "Veure tots els llibres"
+    }
+  },
+  "products": {
+    "eyebrow": "Els nostres llibres",
+    "title": "Tria un món per explorar",
+    "intro": "Col·leccions que creixen amb nous temes, edats i activitats.",
+    "growingLabel": "Biblioteca en creixement",
+    "roadmapTitle": "N’arriben més",
+    "roadmapBody": "Noves temporades, edats i maneres d’acolorir, dibuixar i imaginar.",
+    "roadmapTags": [
+      "Noves temporades",
+      "Noves edats",
+      "Acolorir + dibuixar",
+      "Imaginar + crear"
+    ]
+  },
+  "productFamilies": {
+    "farm": {
+      "theme": "Granja",
+      "title": "El meu primer llibre per acolorir de la granja",
+      "description": "Escenes senzilles de granja per als primers moments de color.",
+      "benefits": [
+        "Formes fàcils",
+        "Món de granja amable",
+        "Per a mans petites"
+      ]
+    },
+    "halloween": {
+      "theme": "Halloween",
+      "title": "El meu primer llibre per acolorir de Halloween",
+      "description": "Un Halloween amable i divertit per a petits artistes.",
+      "benefits": [
+        "Halloween amable",
+        "Formes simples",
+        "Per a mans petites"
+      ]
+    },
+    "christmas": {
+      "theme": "Nadal",
+      "title": "El meu primer llibre per acolorir de Nadal",
+      "description": "Un món de Nadal alegre per a petits artistes.",
+      "benefits": [
+        "Escenes de Nadal alegres",
+        "Formes simples i clares",
+        "Pensat per a mans petites"
+      ]
+    }
+  },
+  "activities": {
+    "color": "Acolorir",
+    "imagine": "Imaginar",
+    "draw": "Dibuixar"
+  },
+  "testimonials": {
+    "eyebrow": "Opinions",
+    "title": "Què diuen les famílies",
+    "intro": "Aquí hi haurà històries reals de famílies.",
+    "demoLabel": "DEMO — substituir abans de publicar",
+    "videoPlaceholder": "Vídeo de client",
+    "ratingSuffix": "sobre 10",
+    "quotes": {
+      "demo1": "Pàgines simples amb espai per triar i explorar.",
+      "demo2": "Un tema connectat de principi a fi.",
+      "demo3": "Una activitat tranquil·la per compartir i fer seva."
+    }
+  },
+  "footer": {
+    "pitch": "La creativitat comença en petit.",
+    "parentNote": "Pensat per a famílies. Les compres es fan a Amazon.",
+    "links": {
+      "about": "Sobre nosaltres",
+      "faq": "FAQ",
+      "privacy": "Privacitat",
+      "cookies": "Cookies",
+      "legal": "Avís legal",
+      "terms": "Termes d’ús",
+      "accessibility": "Accessibilitat"
+    },
+    "rights": "Tots els drets reservats.",
+    "exploreLabel": "Descobreix",
+    "legalLabel": "Legal i privacitat"
+  },
+  "infoPages": {
+    "about": {
+      "title": "Sobre MIMA LABS",
+      "intro": "Llibres creatius per ajudar els més petits a acolorir, imaginar i crear.",
+      "sections": [
+        {
+          "heading": "Per què existim",
+          "body": "Un llibre d’activitats pot ser més que acolorir. Les nostres col·leccions connecten temes, estacions i celebracions i poden créixer amb noves edats i activitats."
+        },
+        {
+          "heading": "Creativitat revisada per persones",
+          "body": "Fem servir eines creatives, inclosa la IA generativa, per explorar idees. Cada activitat publicada és revisada, seleccionada i refinada per una persona."
+        },
+        {
+          "heading": "Què ve després",
+          "body": "Acolorir és el començament. Els propers llibres podran afegir dibuix, detalls per completar i petits reptes d’imaginació."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntes freqüents",
+      "intro": "Respostes ràpides sobre els llibres, la compra i com creem.",
+      "sections": [
+        {
+          "heading": "On puc comprar els llibres?",
+          "body": "Tria un llibre aquí i t’enviarem a l’Amazon corresponent. Pagament, enviament i devolucions es gestionen a Amazon."
+        },
+        {
+          "heading": "Per a quines edats són?",
+          "body": "Les primeres col·leccions són per a 1–3 anys. Més endavant hi haurà noves franges, sempre indicades clarament a cada producte."
+        },
+        {
+          "heading": "Els llibres estan fets amb IA?",
+          "body": "La IA generativa és una de les nostres eines creatives. Una persona revisa i refina cada activitat abans de publicar-la."
+        },
+        {
+          "heading": "Recolliu dades dels infants?",
+          "body": "No. El web està pensat per a famílies i cuidadors i no té comptes, comentaris ni formularis per a infants. L’analítica es limita a ús agregat del web."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Política de privacitat",
+      "intro": "Última actualització: 16 de setembre de 2026. Aquesta política explica com MIMA LABS tracta les dades quan utilitzes aquest lloc.",
+      "sections": [
+        {
+          "heading": "Responsable",
+          "body": "MIMA LABS, Suurstoffi 13b, Rotkreuz, Zug, Suïssa. Contacte: info.mimalabs@gmail.com."
+        },
+        {
+          "heading": "Què recollim",
+          "body": "No hi ha registre de comptes, newsletter ni formulari de contacte. Utilitzem analítica respectuosa amb la privacitat per conèixer de manera agregada visites a pàgines, interès per productes, idioma, categoria de dispositiu, font de referència i clics cap a Amazon. No fem publicitat comportamental ni perfils entre llocs."
+        },
+        {
+          "heading": "Analítica",
+          "body": "L’analítica opcional només es carrega després que l’acceptis al bàner de privacitat. La integració actual està preparada per a Plausible Analytics i s’utilitza només per a mesura agregada interna i millora. La teva elecció es recorda localment al dispositiu."
+        },
+        {
+          "heading": "Infants",
+          "body": "Els llibres són per a infants, però aquest lloc comercial està dirigit a pares, mares i cuidadors. No demanem deliberadament a infants noms, correus, fotos, ubicació precisa ni altres dades personals directes. L’analítica es limita a mesura interna del lloc."
+        },
+        {
+          "heading": "Enllaços externs",
+          "body": "Quan obres un producte a Amazon, abandones MIMA LABS. Amazon tractarà aleshores la informació segons les seves polítiques de privacitat i cookies. MIMA LABS no controla aquest tractament."
+        },
+        {
+          "heading": "Els teus drets",
+          "body": "Segons on visquis, la legislació aplicable et pot reconèixer drets d’informació, accés, rectificació, supressió, limitació, oposició o reclamació davant una autoritat de control. Pots contactar-nos a l’adreça indicada més amunt."
+        },
+        {
+          "heading": "Canvis",
+          "body": "Podem actualitzar aquesta política si canvia el lloc, la configuració d’analítica o els requisits legals. Actualitzarem la data superior quan ho fem."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Política de cookies",
+      "intro": "MIMA LABS desa una petita preferència per recordar la teva elecció de privacitat. L’analítica opcional només es carrega si acceptes.",
+      "sections": [
+        {
+          "heading": "El nostre lloc",
+          "body": "Les funcions necessàries del lloc funcionen sense analítica opcional. Desem la teva elecció localment per no tornar-la a demanar a cada visita. Si rebutges, l’analítica opcional continua desactivada."
+        },
+        {
+          "heading": "Si això canvia",
+          "body": "Si més endavant incorporem tecnologia que emmagatzemi o llegeixi informació no essencial al dispositiu —per exemple determinats vídeos incrustats, eines publicitàries o analítica basada en cookies— actualitzarem aquesta política i afegirem els controls de consentiment necessaris abans d’activar-la."
+        },
+        {
+          "heading": "Amazon",
+          "body": "En fer clic en un enllaç d’Amazon vas a un lloc extern. Amazon pot utilitzar cookies o tecnologies similars segons les seves pròpies polítiques. MIMA LABS no col·loca aquestes tecnologies abans que abandonis aquest lloc."
+        }
+      ]
+    },
+    "legal": {
+      "title": "Avís legal",
+      "intro": "Informació de l’operador i aspectes importants sobre aquest lloc.",
+      "sections": [
+        {
+          "heading": "Operador del lloc",
+          "body": "MIMA LABS · Suurstoffi 13b, Rotkreuz, Zug, Suïssa · info.mimalabs@gmail.com."
+        },
+        {
+          "heading": "Com funcionen les compres",
+          "body": "MIMA LABS actualment no formalitza contractes de venda ni processa pagaments en aquest lloc. Els botons de producte són enllaços externs a Amazon. Disponibilitat, preu final, impostos, enviament, pagament, lliurament, devolucions i contracte de compravenda es gestionen al marketplace d’Amazon visitat i/o pel venedor que hi apareix."
+        },
+        {
+          "heading": "Eines creatives i transparència sobre IA",
+          "body": "MIMA LABS pot utilitzar IA generativa juntament amb altres eines digitals creatives durant la ideació i la producció. La revisió humana continua formant part del procés: els conceptes i materials generats es revisen, seleccionen i refinen abans de publicar-se."
+        },
+        {
+          "heading": "Propietat intel·lectual",
+          "body": "Llevat que s’indiqui el contrari, la marca MIMA LABS, els textos del lloc, els dissenys originals i el contingut publicat dels llibres estan protegits per la normativa aplicable de propietat intel·lectual. Els noms i marques de tercers pertanyen als seus titulars. Amazon és un marketplace extern i no és l’operador de MIMA LABS."
+        },
+        {
+          "heading": "Informació externa",
+          "body": "Intentem mantenir la informació de producte correcta, però la fitxa d’Amazon és la font final d’informació de compra en el moment de la transacció. Els llocs externs funcionen de manera independent de MIMA LABS."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Termes d’ús",
+      "intro": "Aquests termes regulen l’ús del lloc de MIMA LABS. No substitueixen les condicions aplicables a una compra a Amazon.",
+      "sections": [
+        {
+          "heading": "Ús del lloc",
+          "body": "Pots navegar per aquest lloc per a finalitats personals i lícites. No facis un ús indegut del servei, no interfereixis en el seu funcionament, no intentis accessos no autoritzats ni reutilitzis contingut protegit de manera que vulneri drets aplicables."
+        },
+        {
+          "heading": "Enllaços de producte",
+          "body": "Els botons porten a un marketplace extern d’Amazon. Fer clic no crea un contracte de venda amb MIMA LABS a través d’aquest lloc. Qualsevol compra queda subjecta a la fitxa, el venedor i les condicions del marketplace mostrades a Amazon."
+        },
+        {
+          "heading": "Informació i disponibilitat",
+          "body": "Podem actualitzar, afegir o retirar col·leccions, idiomes, funcions i enllaços en qualsevol moment. El contingut provisional o anunciat com a 'properament' no és una promesa de llançament en una data concreta."
+        },
+        {
+          "heading": "Responsabilitat",
+          "body": "Res d’aquests termes exclou responsabilitats que legalment no es puguin excloure. En la mesura permesa per la llei, MIMA LABS no respon del funcionament, disponibilitat o polítiques de llocs independents de tercers accessibles mitjançant enllaços externs."
+        }
+      ]
+    },
+    "accessibility": {
+      "title": "Accessibilitat",
+      "intro": "Volem que pares, mares i cuidadors puguin utilitzar MIMA LABS còmodament amb diferents dispositius i mètodes d’entrada.",
+      "sections": [
+        {
+          "heading": "Què cuidem",
+          "body": "El lloc utilitza encapçalaments i regions semàntiques, controls accessibles amb teclat, focus visible, disseny responsive, contrast llegible i suport per reduir moviment. Els carrusels no avancen automàticament."
+        },
+        {
+          "heading": "Necessites ajuda?",
+          "body": "Si alguna cosa t’impedeix accedir a la informació de producte, escriu a info.mimalabs@gmail.com indicant què intentaves fer i quin dispositiu o tecnologia d’assistència utilitzaves."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "eyebrow": "Contacte",
+    "title": "Una idea per a petits creadors?",
+    "body": "Preguntes, feedback o col·laboracions? Escriu-nos.",
+    "cta": "Escriu a MIMA LABS",
+    "note": "Sense formularis — només correu electrònic."
+  },
+  "cookieConsent": {
+    "title": "La teva privacitat, sense complicacions",
+    "body": "Recordem la teva elecció. L’analítica opcional només es carrega si acceptes.",
+    "acceptAll": "Accepta",
+    "essentialOnly": "Rebutja",
+    "learnMore": "Política de galetes",
+    "manage": "Preferències de galetes"
+  }
+}
