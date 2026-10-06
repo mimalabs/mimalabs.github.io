@@ -4178,7 +4178,7 @@ html:has(#main-content > .viewport-section) .footer-frame {
 
   .hero-static-book,
   .hero-static-book + .hero-static-book {
-    width: min(36vw, 10.5rem, 23svh);
+    width: min(36vw, 25.5rem, 23svh);
     flex: 0 0 auto;
   }
 
