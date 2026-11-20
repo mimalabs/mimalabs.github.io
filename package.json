@@ -1,0 +1,24 @@
+{
+  "name": "mima-labs-website",
+  "version": "7.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Typed localized static website for MIMA LABS",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && esbuild src/build/main.ts --bundle --platform=node --format=esm --target=node22 --outfile=.generated/build.mjs && esbuild src/client/index.ts --bundle --format=iife --target=es2020 --minify --outfile=site/assets/site.js && node .generated/build.mjs",
+    "test": "npm run build && python3 tools/qa_static.py && node tools/qa_seo_v7.mjs && node tools/qa_navigation_v7.mjs && node tools/qa_interactions_v7.mjs && node tools/qa_return_navigation_v7.mjs && node tools/qa_catalog_growth_v7.mjs",
+    "test:e2e": "node tools/qa_release_v7.mjs",
+    "images:import": "node tools/import_images.mjs",
+    "preview": "node tools/serve.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "esbuild": "0.25.12",
+    "happy-dom": "21.0.4",
+    "playwright": "1.58.2",
+    "sharp": "^0.34.5",
+    "typescript": "5.9.3"
+  }
+}

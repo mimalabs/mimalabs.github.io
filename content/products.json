@@ -1,0 +1,184 @@
+[
+  {
+    "id": "farm",
+    "age": "1–3",
+    "urls": {
+      "en": "https://a.co/d/0iP4hcyy",
+      "de": "https://amzn.eu/d/00xUxhrS",
+      "es": "https://amzn.eu/d/05qXy8OT",
+      "fr": "https://amzn.eu/d/08l6Mo86",
+      "it": "https://a.co/d/00AVfMEF",
+      "ca": "https://a.co/d/0cWgMcDY"
+    },
+    "heroPosition": "center",
+    "coverMode": "localized",
+    "translations": {
+      "en": {
+        "title": "My First Farm Coloring Book",
+        "theme": "Farm",
+        "description": "Farm animals and familiar scenes with clear outlines for early coloring."
+      },
+      "de": {
+        "title": "Mein erstes Bauernhof-Malbuch",
+        "theme": "Bauernhof",
+        "description": "Bauernhoftiere und vertraute Szenen mit klaren Konturen zum Ausmalen."
+      },
+      "es": {
+        "title": "Mi primer libro para colorear de la granja",
+        "theme": "Granja",
+        "description": "Animales de granja y escenas familiares con contornos sencillos para colorear."
+      },
+      "fr": {
+        "title": "Mon premier livre de coloriage de la ferme",
+        "theme": "Ferme",
+        "description": "Des animaux de la ferme et des scènes familières aux contours faciles à colorier."
+      },
+      "it": {
+        "title": "Il mio primo libro da colorare della fattoria",
+        "theme": "Fattoria",
+        "description": "Animali della fattoria e scene familiari con contorni semplici da colorare."
+      },
+      "ca": {
+        "title": "El meu primer llibre per acolorir de la granja",
+        "theme": "Granja",
+        "description": "Animals de granja i escenes familiars amb contorns senzills per acolorir."
+      }
+    }
+  },
+  {
+    "id": "halloween",
+    "age": "1–3",
+    "urls": {
+      "en": "https://a.co/d/0gFSO2ly",
+      "de": "https://amzn.eu/d/0d2elJIz",
+      "es": "https://amzn.eu/d/0fwmAeCM",
+      "fr": "https://amzn.eu/d/01JWLne6",
+      "ca": "https://amzn.eu/d/05Iedfz4",
+      "it": "https://a.co/d/04mrW71z"
+    },
+    "heroPosition": "left",
+    "coverMode": "localized",
+    "translations": {
+      "en": {
+        "title": "My First Halloween Coloring Book",
+        "theme": "Halloween",
+        "description": "Playful Halloween characters and simple scenes to color."
+      },
+      "de": {
+        "title": "Mein erstes Halloween-Malbuch",
+        "theme": "Halloween",
+        "description": "Freundliche Halloween-Figuren und einfache Motive zum Ausmalen."
+      },
+      "es": {
+        "title": "Mi primer libro para colorear de Halloween",
+        "theme": "Halloween",
+        "description": "Personajes de Halloween simpáticos y dibujos sencillos para colorear."
+      },
+      "fr": {
+        "title": "Mon premier livre de coloriage Halloween",
+        "theme": "Halloween",
+        "description": "Des personnages d’Halloween amusants et des motifs simples à colorier."
+      },
+      "it": {
+        "title": "Il mio primo libro da colorare di Halloween",
+        "theme": "Halloween",
+        "description": "Personaggi di Halloween simpatici e disegni semplici da colorare."
+      },
+      "ca": {
+        "title": "El meu primer llibre per acolorir de Halloween",
+        "theme": "Halloween",
+        "description": "Personatges de Halloween simpàtics i dibuixos senzills per acolorir."
+      }
+    }
+  },
+  {
+    "id": "christmas",
+    "age": "1–3",
+    "urls": {
+      "en": "https://a.co/d/07YIv6b3",
+      "de": "https://amzn.eu/d/0712zJ9S",
+      "es": "https://amzn.eu/d/0edtUioA",
+      "fr": "https://amzn.eu/d/03cW13Kj",
+      "it": "https://a.co/d/0aCEyz7T",
+      "ca": "https://a.co/d/05GK83Yo"
+    },
+    "heroPosition": "right",
+    "coverMode": "localized",
+    "translations": {
+      "en": {
+        "title": "My First Christmas Coloring Book",
+        "theme": "Christmas",
+        "description": "Festive Christmas scenes with clear, easy-to-color illustrations."
+      },
+      "de": {
+        "title": "Mein erstes Weihnachts-Malbuch",
+        "theme": "Weihnachten",
+        "description": "Weihnachtliche Motive mit klaren Konturen zum Ausmalen."
+      },
+      "es": {
+        "title": "Mi primer libro para colorear de Navidad",
+        "theme": "Navidad",
+        "description": "Escenas navideñas con ilustraciones claras y fáciles de colorear."
+      },
+      "fr": {
+        "title": "Mon premier livre de coloriage de Noël",
+        "theme": "Noël",
+        "description": "Des scènes de Noël aux illustrations claires et faciles à colorier."
+      },
+      "it": {
+        "title": "Il mio primo libro da colorare di Natale",
+        "theme": "Natale",
+        "description": "Scene natalizie con illustrazioni chiare e facili da colorare."
+      },
+      "ca": {
+        "title": "El meu primer llibre per acolorir de Nadal",
+        "theme": "Nadal",
+        "description": "Escenes de Nadal amb il·lustracions clares i fàcils d’acolorir."
+      }
+    }
+  },
+  {
+    "id": "cars",
+    "age": "1–3",
+    "coverMode": "localized",
+    "urls": {
+      "en": "https://a.co/d/0hzRYmJq",
+      "de": "https://a.co/d/0cbz14Ii",
+      "fr": "https://a.co/d/0fA4MIjz",
+      "it": "https://a.co/d/0fVS9LQz",
+      "ca": "https://a.co/d/05cmbthB"
+    },
+    "translations": {
+      "en": {
+        "title": "Vehicles Coloring Book",
+        "theme": "Vehicles",
+        "description": "Cars, trucks, and construction vehicles in easy-to-recognize scenes to color."
+      },
+      "de": {
+        "title": "Fahrzeuge-Malbuch",
+        "theme": "Fahrzeuge",
+        "description": "Autos, Lastwagen und Baufahrzeuge in gut erkennbaren Motiven zum Ausmalen."
+      },
+      "es": {
+        "title": "Libro para colorear de vehículos",
+        "theme": "Vehículos",
+        "description": "Coches, camiones y vehículos de construcción en escenas fáciles de colorear."
+      },
+      "fr": {
+        "title": "Livre de coloriage de véhicules",
+        "theme": "Véhicules",
+        "description": "Voitures, camions et engins de chantier dans des scènes faciles à colorier."
+      },
+      "it": {
+        "title": "Libro da colorare di veicoli",
+        "theme": "Veicoli",
+        "description": "Auto, camion e mezzi da cantiere in scene facili da colorare."
+      },
+      "ca": {
+        "title": "Llibre per pintar de vehicles",
+        "theme": "Vehicles",
+        "description": "Cotxes, camions i vehicles d’obra en escenes fàcils de pintar."
+      }
+    }
+  }
+]
