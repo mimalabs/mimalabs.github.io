@@ -63,7 +63,7 @@ for file in files:
   text=file.read_text()
   if 'book-card' not in text:issues.append(f'{file}: no books')
   if text.count('class="book-card"')!=product_count:issues.append(f'{file}: expected {product_count} book cards')
-  if 'mailto:info@mimalabsworld.com' not in text:issues.append(f'{file}: wrong public contact link')
+  if 'mailto:info.mimalabs@gmail.com' not in text:issues.append(f'{file}: wrong public contact link')
  if len(file.relative_to(SITE).parts)>2 and loc in ('en','de','es','fr','it','ca'):
   if re.search(r'lang-details',file.read_text()) is None:issues.append(f'{file}: language switcher missing')
 js=subprocess.run(['node','--check',str(SITE/'assets/site.js')],capture_output=True,text=True)

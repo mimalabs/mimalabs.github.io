@@ -8,7 +8,7 @@ export const socials = {
 /** Production canonical origin. DNS and GitHub Pages binding are configured at go-live. */
 export const siteUrl = 'https://www.mimalabsworld.com';
 /** One source of truth for contact links, structured metadata and translated legal notices. */
-export const businessEmail = 'info@mimalabsworld.com';
+export const businessEmail = 'info.mimalabs@gmail.com';
 /** Public city-level location. A legal postal address must be reviewed separately. */
 export const publicLocations: Record<Locale, string> = {
   en: 'Zug, Switzerland',
