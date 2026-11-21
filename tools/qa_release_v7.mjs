@@ -90,8 +90,13 @@ try {
   check(new URL(desktop.url()).hash === '#books', 'Desktop Books header link did not navigate');
   for (const book of featuredBooks) {
     const link = desktop.locator('a.hero-book-' + book.heroPosition);
-    await link.click({ position: book.heroPosition === 'left' ? { x: 12, y: 24 } :
-      book.heroPosition === 'right' ? { x: (await link.boundingBox()).width - 12, y: 24 } : undefined });
+    // Rotated covers have empty corners in their bounding boxes. Test a point
+    // inside each visible cover, away from the overlapping center book.
+    const size = await link.evaluate((element) => ({ width: element.clientWidth, height: element.clientHeight }));
+    check(size.width > 0 && size.height > 0, book.id + ': hero cover has no dimensions');
+    const horizontalPosition = book.heroPosition === 'left' ? 0.2 :
+      book.heroPosition === 'right' ? 0.8 : 0.5;
+    await link.click({ position: { x: size.width * horizontalPosition, y: size.height * 0.5 } });
     check(new URL(desktop.url()).hash === '#book-' + book.id, book.id + ': hero artwork did not navigate');
   }
   await desktop.close();
