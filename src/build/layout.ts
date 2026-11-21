@@ -55,7 +55,7 @@ export function footer({ locale, copy, prefix, slug }: PageContext): string {
     .map((id) => anchor(base + id + '/index.html', e(f.links[id]))).join('')
     + `<button type="button" class="footer-cookie-preferences" data-cookie-settings>${e(copy.cookieConsent.manage)}</button>`;
   return `<footer id="footer" class="site-footer"><div class="container"><div class="footer-main">
-  <div class="footer-brand">${anchor(section('home'), 'MIMA LABS <span>✳</span>', 'footer-wordmark')}<p>${e(ex.footerPrompt)}</p><nav class="social-links social-links--footer" aria-label="Social media">${social}</nav></div>
+  <div class="footer-brand">${anchor(section('home'), 'MIMA LABS <span>✦</span>', 'footer-wordmark')}<p>${e(ex.footerPrompt)}</p><nav class="social-links social-links--footer" aria-label="Social media">${social}</nav></div>
   <nav class="footer-links" aria-label="${e(f.exploreLabel)}"><span class="footer-label">${e(f.exploreLabel)}</span>${explore}</nav>
   <nav class="footer-links" aria-label="${e(f.legalLabel)}"><span class="footer-label">${e(f.legalLabel)}</span>${legal}</nav>
   </div><div class="footer-bottom"><span>© ${new Date().getUTCFullYear()} MIMA LABS · ${e(publicLocations[locale])}</span><span>${e(ex.footerDisclaimer)}</span></div></div></footer>`;

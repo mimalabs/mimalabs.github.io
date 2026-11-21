@@ -21,16 +21,16 @@ export function homePage(locale: Locale, copy: LocaleContent, books: Book[], roo
       ` aria-label="${e(title)} — ${e(copy.nav.products)}"`);
   }).join('');
   const meta = ex.features.map((label, index) =>
-    `<span><span class="meta-symbol" aria-hidden="true">${['✳', '◒', '♡'][index % 3]}</span>${e(label)}</span>`).join('');
+    `<span><span class="meta-symbol" aria-hidden="true">${['✦', '◒', '♡'][index % 3]}</span>${e(label)}</span>`).join('');
 
   const top = `<section id="home" class="hero-section" aria-labelledby="hero-title"><div class="container hero-grid">
   <div class="hero-content"><span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>${e(ex.eyebrow)}</span>
   <h1 id="hero-title">${e(hero.title)}</h1><p class="hero-description">${e(hero.body)}</p>
   ${anchor('#books', e(ex.discover) + '<span aria-hidden="true">↗</span>', 'button button-dark')}
-  <div class="hero-note"><span class="hero-note-mark" aria-hidden="true">✳</span>${e(ex.new)}</div>
+  <div class="hero-note"><span class="hero-note-mark" aria-hidden="true">✦</span>${e(ex.new)}</div>
   </div><div class="hero-stage" aria-label="${e(copy.products.title)}"><div class="hero-sun" aria-hidden="true"></div>
-  <span class="hero-scribble hero-scribble-one" aria-hidden="true">✳</span><span class="hero-scribble hero-scribble-two" aria-hidden="true">✧</span>
-  ${heroBooks}<span class="stage-badge" aria-hidden="true">✳<span>MIMA</span></span>
+  <span class="hero-scribble hero-scribble-one" aria-hidden="true">✦</span><span class="hero-scribble hero-scribble-two" aria-hidden="true">✧</span>
+  ${heroBooks}<span class="stage-badge" aria-hidden="true">✦<span>MIMA</span></span>
   </div></div><div class="container hero-meta" aria-label="${e(ex.introLabel)}">${meta}</div></section>`;
 
   const cards = books.map((book, index) => {
@@ -43,7 +43,7 @@ export function homePage(locale: Locale, copy: LocaleContent, books: Book[], roo
       : `<span class="coming-soon-label">${e(ex.coming)}</span>`;
     const imgHtml = book.coverMode === 'placeholder'
       ? `<div class="book-artwork-placeholder" role="img" aria-label="${e(text.title + ' — ' + ex.coming)}">
-        <span class="placeholder-star" aria-hidden="true">✳</span><span class="placeholder-brand">MIMA LABS</span><span class="placeholder-theme">${e(text.theme)}</span></div>`
+        <span class="placeholder-star" aria-hidden="true">✦</span><span class="placeholder-brand">MIMA LABS</span><span class="placeholder-theme">${e(text.theme)}</span></div>`
       : image(cover(prefix, book, locale), text.title + ' — ' + locale.toUpperCase() + ' cover', 310, 403);
     // The cover and title are Amazon links only when a listing actually exists.
     const clickableCover = amazon
