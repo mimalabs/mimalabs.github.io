@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "generated_html_pages": 50,
+  "locales": 6,
+  "legal_and_info_pages": 42,
+  "product_collections": 4,
+  "optimized_image_count": 26,
+  "tested": [
+    "HTML structural validity",
+    "All local asset paths and navigation links",
+    "Target IDs and unique IDs",
+    "Language routes and localized information pages",
+    "Image alt attributes",
+    "External-host allowlist",
+    "JavaScript parse",
+    "Basic CSS parse",
+    "Data schema completeness",
+    "Sitemap and robots present"
+  ],
+  "not_tested": [
+    "Live Amazon shortlink redirects and book identity (Amazon robots/network restrictions)",
+    "External deployment and device QA"
+  ],
+  "issues": []
+}

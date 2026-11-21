@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": 6,
+  "locales": [
+    "en: cookie choice, persistence, reopening, no scroll jump, menu and book links",
+    "de: cookie choice, persistence, reopening, no scroll jump, menu and book links",
+    "es: cookie choice, persistence, reopening, no scroll jump, menu and book links",
+    "fr: cookie choice, persistence, reopening, no scroll jump, menu and book links",
+    "it: cookie choice, persistence, reopening, no scroll jump, menu and book links",
+    "ca: cookie choice, persistence, reopening, no scroll jump, menu and book links"
+  ],
+  "browserRendering": "Not included: this is a DOM interaction regression test"
+}

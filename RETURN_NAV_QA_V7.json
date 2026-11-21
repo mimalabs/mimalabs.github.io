@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "infoPages": 42,
+  "locales": 6,
+  "checks": [
+    "Same-origin info page Back uses history for scroll restoration",
+    "Direct/external visitors use About or footer fallback",
+    "Three header/footer social links include exact Amazon shop URL, accessible name, safe new tab"
+  ]
+}
