@@ -1,102 +1,52 @@
-
-import { readFileSync, readdirSync, existsSync, statSync, writeFileSync } from 'node:fs';
-import { resolve, dirname, join, relative, sep, isAbsolute } from 'node:path';
+/** Audit the built website, not implementation-specific route builders. */
 import assert from 'node:assert/strict';
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, join, relative, resolve } from 'node:path';
+import { allHtmlFiles, infoSlugs, isInside, locales, siteRoot, writeReport } from './qa/support.mjs';
 
-const root = resolve(import.meta.dirname, '../site');
-const locales = ['en', 'de', 'es', 'fr', 'it', 'ca'];
-const pages = [];
 const issues = [];
+const pages = allHtmlFiles();
 let checkedLinks = 0;
 let checkedFragments = 0;
 let languageLinks = 0;
 
-function collect(directory) {
-  for (const entry of readdirSync(directory, { withFileTypes: true })) {
-    const pathname = join(directory, entry.name);
-    if (entry.isDirectory()) collect(pathname);
-    else if (entry.name.endsWith('.html')) pages.push(pathname);
+function auditLink(file, href) {
+  if (/^(https?:|mailto:|tel:)/i.test(href)) return;
+  const [path, fragment] = href.split('#', 2);
+  const target = path ? resolve(dirname(file), decodeURIComponent(path)) : file;
+  const label = relative(siteRoot, file);
+
+  if (!isInside(siteRoot, target)) {
+    issues.push(`${label}: link escapes site: ${href}`);
+    return;
+  }
+  if (!existsSync(target)) {
+    issues.push(`${label}: broken link: ${href}`);
+    return;
+  }
+  if (fragment) {
+    checkedFragments++;
+    const targetText = readFileSync(target, 'utf8');
+    if (!targetText.includes(`id="${decodeURIComponent(fragment)}"`)) {
+      issues.push(`${label}: missing target: ${href}`);
+    }
+  }
+  if (/\/?(en|de|es|fr|it|ca)\/(about\/|faq\/|privacy\/|cookies\/|legal\/|terms\/|accessibility\/)?index\.html/.test(href)) {
+    languageLinks++;
   }
 }
 
-function isInsideSite(targetFile) {
-  const relativePath = relative(root, targetFile);
-
-  return (
-    relativePath !== '..' &&
-    !relativePath.startsWith('..' + sep) &&
-    !isAbsolute(relativePath)
-  );
-}
-
-collect(root);
-
 for (const file of pages) {
-  const text = readFileSync(file, 'utf8');
-  const anchors = text.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g);
-
-  for (const [, raw] of anchors) {
-    const href = raw.replaceAll('&amp;', '&');
+  const html = readFileSync(file, 'utf8');
+  for (const [, rawHref] of html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)) {
     checkedLinks++;
-
-    if (/^(https?:|mailto:|tel:)/.test(href)) continue;
-
-    const fragmentAt = href.indexOf('#');
-    const pathname = fragmentAt === -1 ? href : href.slice(0, fragmentAt);
-    const fragment = fragmentAt === -1
-      ? ''
-      : decodeURIComponent(href.slice(fragmentAt + 1));
-
-    const resolvedPath = pathname.startsWith('/')
-      ? resolve(root, '.' + pathname)
-      : pathname
-        ? resolve(dirname(file), pathname)
-        : file;
-
-    const targetFile = existsSync(resolvedPath) && statSync(resolvedPath).isDirectory()
-      ? join(resolvedPath, 'index.html')
-      : resolvedPath;
-
-    if (!isInsideSite(targetFile)) {
-      issues.push(`${relative(root, file)}: link escapes site: ${href}`);
-      continue;
-    }
-
-    if (!existsSync(targetFile)) {
-      issues.push(`${relative(root, file)}: broken link: ${href}`);
-      continue;
-    }
-
-    if (fragment) {
-      checkedFragments++;
-
-      const targetHtml = readFileSync(targetFile, 'utf8');
-
-      if (!targetHtml.includes(`id="${fragment}"`)) {
-        issues.push(`${relative(root, file)}: missing target: ${href}`);
-      }
-    }
-
-    if (
-      /\blang="(en|de|es|fr|it|ca)"/.test(text) &&
-      /\/?(en|de|es|fr|it|ca)\/(about\/|faq\/|privacy\/|cookies\/|legal\/|terms\/|accessibility\/)?index\.html/.test(href)
-    ) {
-      languageLinks++;
-    }
+    auditLink(file, rawHref.replaceAll('&amp;', '&'));
   }
 }
 
 for (const locale of locales) {
-  for (const slug of [
-    'about',
-    'faq',
-    'privacy',
-    'cookies',
-    'legal',
-    'terms',
-    'accessibility'
-  ]) {
-    assert.ok(existsSync(join(root, locale, slug, 'index.html')));
+  for (const slug of infoSlugs) {
+    assert.ok(existsSync(join(siteRoot, locale, slug, 'index.html')), `${locale}/${slug}: missing info page`);
   }
 }
 
@@ -106,14 +56,7 @@ const report = {
   checkedLinks,
   checkedFragments,
   languageLinks,
-  issues
+  issues,
 };
-
-writeFileSync(
-  resolve(import.meta.dirname, '../NAVIGATION_QA_V7.json'),
-  JSON.stringify(report, null, 2)
-);
-
-console.log(JSON.stringify(report, null, 2));
-
-if (issues.length) process.exit(1);
+writeReport('NAVIGATION_QA_V7.json', report);
+if (issues.length) process.exitCode = 1;

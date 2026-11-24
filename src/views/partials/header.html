@@ -1,0 +1,7 @@
+<header class="site-header"><div class="container nav-row">
+  {{homeLink}}
+  <nav class="desktop-nav" aria-label="{{menuLabel}}">{{desktopNav}}</nav>
+  <noscript><nav class="mobile-noscript" aria-label="{{menuLabel}}">{{desktopNav}}</nav></noscript>
+  <div class="nav-actions">{{headerSocials}}<details class="lang-details"><summary class="language-trigger" aria-label="{{languageLabel}}: {{languageName}}"><span>{{localeLabel}}</span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="language-dropdown">{{languageOptions}}</div></details>
+  <div class="mobile-menu"><button type="button" class="menu-trigger" aria-controls="mobile-navigation" aria-expanded="false" aria-label="{{menuLabel}}" data-open-label="{{menuLabel}}" data-close-label="{{closeLabel}}"><span class="burger"><span></span><span></span></span></button>
+  <nav id="mobile-navigation" class="mobile-menu-panel" hidden aria-label="{{menuLabel}}">{{mobileNav}}</nav></div></div></div></header>
